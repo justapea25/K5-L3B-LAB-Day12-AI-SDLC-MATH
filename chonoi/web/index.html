@@ -192,7 +192,7 @@ function drawGather(w, h) {
   const meta = snap.meta || {};
   const b = meta.bounds || { x: [0, 100], d: [0, 30] };
   const X = b.x[1], D = b.d[1], SKY = 6;
-  const top = 92, bottom = 56;
+  const top = 116, bottom = 56;
   const s = Math.max(1, Math.min((w - 20) / (X + 4), (h - top - bottom) / (D + SKY + 1)));
   const ox = (w - s * (X + 4)) / 2 + 2 * s, oy = top + SKY * s;
   const sx = (x) => ox + x * s, sy = (d) => oy + d * s;
@@ -257,10 +257,11 @@ function drawGather(w, h) {
     }
   }
   // HUD trên (nền tối cho dễ đọc)
-  panel(6, 4, w - 12, 82);
+  panel(6, 4, w - 12, snap.day_plan ? 106 : 82);
   text("⏱ " + fmtTime(snap.time_left_ticks), 14, 30, { size: 22, color: snap.time_left_ticks <= 1800 ? "#ff8a80" : "#e8eef2" });
   const need = needList();
-  if (need) text("Cần lấy (Má Tư): " + need, 14, 76, { size: 18, color: "#ffd180" });
+  if (need) text("🧺 Cần lấy: " + need, 14, 76, { size: 18, color: "#ffd180" });
+  if (snap.day_plan) text(planText() + (snap.demo ? "   (demo: tối Má Tư mua thêm đủ nguyên liệu)" : ""), 14, 100, { size: 17, color: "#a5d6a7" });
   if (p && p.oxygen_ticks !== undefined && p.oxygen_max_ticks) {
     const low = p.oxygen_ticks < p.oxygen_max_ticks * 0.25;
     bar(110, 12, 220, 18, p.oxygen_ticks / p.oxygen_max_ticks, low ? "#ef5350" : "#4fc3f7", "Oxy " + Math.ceil(p.oxygen_ticks / 60) + "s");
@@ -296,7 +297,7 @@ function drawGather(w, h) {
 function drawQuan(w, h) {
   const meta = snap.meta || {};
   const b = meta.bounds || { x: [0, 16], z: [0, 10] };
-  const X = b.x[1], Z = b.z[1], top = 132, bottom = 84;
+  const X = b.x[1], Z = b.z[1], top = 150, bottom = 84;
   const s = Math.max(1, Math.min((w - 40) / X, (h - top - bottom) / Z));
   const ox = (w - s * X) / 2, oy = top;
   const sx = (x) => ox + x * s, sy = (z) => oy + (Z - z) * s;
@@ -355,7 +356,7 @@ function drawQuan(w, h) {
     }
   }
   // HUD
-  panel(6, 4, Math.min(w - 12, 900), 102);
+  panel(6, 4, Math.min(w - 12, 980), snap.day_plan ? 126 : 102);
   text("⏱ " + fmtTime(snap.time_left_ticks), 14, 30, { size: 22 });
   text(`💰 ${snap.money ?? 0}k · ⭐ uy tín ${(snap.reputation ?? 0).toFixed(1)} · điểm ${snap.score ?? 0}`, 110, 30, { size: 18 });
   const stock = fmtItems(snap.stock);
@@ -428,6 +429,7 @@ function quanGuide(w, h) {
   text(`Khách kế tiếp sau ${fmtTime(next)} · bàn trống ${freeTables}/${(snap.tables || []).length}`, 14, 76, { size: 18, color: "#ffd180" });
   text("Món nấu được từ kho: " + (ok.length ? ok.map((d) => DISH_NAME[d] || d).join(", ") : "không có"), 14, 98,
        { size: 18, color: ok.length ? "#a5d6a7" : "#ef9a9a" });
+  if (snap.day_plan) text(planText(), 14, 120, { size: 17, color: "#ffd180" });
   const recentNoDish = (snap.events || []).some((e) => e.name === "no_dish" && snap.tick - e.tick < 240);
   if (!ok.length || recentNoDish) {
     const y = h / 2 - 40;
@@ -455,6 +457,10 @@ function quanStep() {
   if (cooking) return { target: cooking, text: `Đang nấu ở Bếp ${cooking.id}… còn ${Math.ceil(cooking.cook_ticks_left / 60)}s` };
   if (cust.some((c) => c.state === "eating")) return { text: "Khách đang ăn, ăn xong sẽ tự trả tiền và boa" };
   return {};
+}
+function planText() {
+  if (!snap.day_plan) return "";
+  return "📋 Hôm nay Má Tư nấu: " + Object.entries(snap.day_plan.dishes).map(([d, n]) => (DISH_NAME[d] || d) + " ×" + n).join(", ");
 }
 function needList() {
   // HUD sáng: đã lấy / cần lấy theo kế hoạch Ngày
