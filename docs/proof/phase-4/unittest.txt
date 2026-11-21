@@ -1,0 +1,160 @@
+2026-11-21 | phase-4 | 5e188e71a2ef1bda280b54628d4e4da1d6a8b2f9 | Windows 11, Python 3.13.17
+
+python -m unittest discover -s tests -v
+Windows: lời gọi tiến trình con python3 được ánh xạ sang trình thông dịch Python đang chạy.
+test_day_plan_khop_de (test_contract_v11.Contract.test_day_plan_khop_de) ... ok
+test_version_va_du_lieu_chuan (test_contract_v11.Contract.test_version_va_du_lieu_chuan) ... ok
+test_faint_v11_hp_0_lost_theo_lifo (test_contract_v11.Faint.test_faint_v11_hp_0_lost_theo_lifo) ... ok
+test_cung_seed_cung_dan_khac_seed_khac_dan (test_contract_v11.FishSpawn.test_cung_seed_cung_dan_khac_seed_khac_dan) ... ok
+test_dau_ca_8_dan_o_diem_khac_nhau (test_contract_v11.FishSpawn.test_dau_ca_8_dan_o_diem_khac_nhau) ... ok
+test_random_fish_false_khong_sinh (test_contract_v11.FishSpawn.test_random_fish_false_khong_sinh) ... ok
+test_sinh_theo_lich (test_contract_v11.FishSpawn.test_sinh_theo_lich) ... ok
+test_chay_thi_giu_lai_neu_con_kho (test_ext_burn_net.Burn.test_chay_thi_giu_lai_neu_con_kho) ... ok
+test_dung_nguong_van_bung_duoc_qua_nguong_thi_chay (test_ext_burn_net.Burn.test_dung_nguong_van_bung_duoc_qua_nguong_thi_chay) ... ok
+test_cap_0_dung_luat_loi (test_ext_burn_net.Net.test_cap_0_dung_luat_loi) ... ok
+test_cap_1_toi_da_2_dan_trong_4m (test_ext_burn_net.Net.test_cap_1_toi_da_2_dan_trong_4m) ... ok
+test_cap_2_toi_da_3_dan_trong_6m (test_ext_burn_net.Net.test_cap_2_toi_da_3_dan_trong_6m) ... ok
+test_thieu_cho_bo_qua_dan_do (test_ext_burn_net.Net.test_thieu_cho_bo_qua_dan_do) ... ok
+test_burn_s_chi_huu_han_khi_bat_burn (test_extensions_manifest.Manifest.test_burn_s_chi_huu_han_khi_bat_burn) ... ok
+test_ma_la_hoac_trung_bi_tu_choi (test_extensions_manifest.Manifest.test_ma_la_hoac_trung_bi_tu_choi) ... ok
+test_manifest_dang_bat_burn_va_net (test_extensions_manifest.Manifest.test_manifest_dang_bat_burn_va_net) ... ok
+test_net_mua_duoc_khi_bat (test_extensions_manifest.Manifest.test_net_mua_duoc_khi_bat) ... ok
+test_bat_ca_linh_duoc_nhieu_mon_va_xoa_ca (test_gather_harvest.Catch.test_bat_ca_linh_duoc_nhieu_mon_va_xoa_ca) ... ok
+test_ca_gan_nhat_va_bang_nhau_id_nho_thang (test_gather_harvest.Catch.test_ca_gan_nhat_va_bang_nhau_id_nho_thang) ... ok
+test_ca_loc_cho_dung_so_mon (test_gather_harvest.Catch.test_ca_loc_cho_dung_so_mon) ... ok
+test_gio_thieu_cho_phat_hold_full_ca_o_lai_khong_hoi_chieu (test_gather_harvest.Catch.test_gio_thieu_cho_phat_hold_full_ca_o_lai_khong_hoi_chieu) ... ok
+test_hoi_chieu_dat_dung_va_chan_dung (test_gather_harvest.Catch.test_hoi_chieu_dat_dung_va_chan_dung) ... ok
+test_ngoai_ban_kinh_khong_bat (test_gather_harvest.Catch.test_ngoai_ban_kinh_khong_bat) ... ok
+test_o_mat_nuoc_khong_bat (test_gather_harvest.Catch.test_o_mat_nuoc_khong_bat) ... ok
+test_cung_seed_cung_byte (test_gather_harvest.Determinism.test_cung_seed_cung_byte) ... ok
+test_bang_khoang_cach_id_nho_hon_thang (test_gather_harvest.Gather.test_bang_khoang_cach_id_nho_hon_thang) ... ok
+test_duoi_nuoc_khong_hai (test_gather_harvest.Gather.test_duoi_nuoc_khong_hai) ... ok
+test_gio_day_phat_hold_full_nut_van_ready (test_gather_harvest.Gather.test_gio_day_phat_hold_full_nut_van_ready) ... ok
+test_hai_lai_sau_khi_moc_lai (test_gather_harvest.Gather.test_hai_lai_sau_khi_moc_lai) ... ok
+test_hai_nut_gan_nhat (test_gather_harvest.Gather.test_hai_nut_gan_nhat) ... ok
+test_ngoai_ban_kinh_khong_hai (test_gather_harvest.Gather.test_ngoai_ban_kinh_khong_hai) ... ok
+test_nut_chua_moc_lai_thi_khong_hai_lan_hai (test_gather_harvest.Gather.test_nut_chua_moc_lai_thi_khong_hai_lan_hai) ... ok
+test_nut_moc_lai_sau_regrow_s (test_gather_harvest.Gather.test_nut_moc_lai_sau_regrow_s) ... ok
+test_choke_sau_moi_chu_ky (test_gather_oxy.Choke.test_choke_sau_moi_chu_ky) ... ok
+test_len_mat_nuoc_reset_dem_ngat (test_gather_oxy.Choke.test_len_mat_nuoc_reset_dem_ngat) ... ok
+test_ngat_mat_gio_kho_rong (test_gather_oxy.Choke.test_ngat_mat_gio_kho_rong) ... ok
+test_day_thi_hold_full_khong_them (test_gather_oxy.Hold.test_day_thi_hold_full_khong_them) ... ok
+test_them_vao_cuoi_lifo (test_gather_oxy.Hold.test_them_vao_cuoi_lifo) ... ok
+test_duoi_nuoc_tru_1_moi_tick (test_gather_oxy.Oxygen.test_duoi_nuoc_tru_1_moi_tick) ... ok
+test_mat_nuoc_hoi_va_kep_max (test_gather_oxy.Oxygen.test_mat_nuoc_hoi_va_kep_max) ... ok
+test_oxygen_empty_dung_mot_lan (test_gather_oxy.Oxygen.test_oxygen_empty_dung_mot_lan) ... ok
+test_dive_roi_surface (test_gather_oxy.Zone.test_dive_roi_surface) ... ok
+test_bat_ca_o_buoc_cuoi_uu_tien_id_va_chuyen_kho (test_integration.Phase1Integration.test_bat_ca_o_buoc_cuoi_uu_tien_id_va_chuyen_kho) ... ok
+test_dock_o_buoc_cuoi_va_kho_tat_dinh (test_integration.Phase1Integration.test_dock_o_buoc_cuoi_va_kho_tat_dinh) ... ok
+test_gio_thieu_cho_giu_ca_va_khong_dat_hoi_chieu (test_integration.Phase1Integration.test_gio_thieu_cho_giu_ca_va_khong_dat_hoi_chieu) ... ok
+test_hai_nut_vua_moc_lai_o_buoc_cuoi_roi_chuyen_kho (test_integration.Phase1Integration.test_hai_nut_vua_moc_lai_o_buoc_cuoi_roi_chuyen_kho) ... ok
+test_ngat_bo_gio_theo_lifo_va_xuat_kho_rong (test_integration.Phase1Integration.test_ngat_bo_gio_theo_lifo_va_xuat_kho_rong) ... ok
+test_oxygen_empty_co_payload_theo_contract (test_integration.Phase1Integration.test_oxygen_empty_co_payload_theo_contract) ... ok
+test_quan_goi_mon_theo_kho_va_lich_khach (test_integration.Phase1Integration.test_quan_goi_mon_theo_kho_va_lich_khach) ... ok
+test_quan_phuc_vu_o_tick_het_kien_nhan_va_dong_ca (test_integration.Phase1Integration.test_quan_phuc_vu_o_tick_het_kien_nhan_va_dong_ca) ... ok
+test_tick_limit_giu_nguyen_file_kho_da_co (test_integration.Phase1Integration.test_tick_limit_giu_nguyen_file_kho_da_co) ... ok
+test_state_input_and_clean_stop (test_live.LiveServerTest.test_state_input_and_clean_stop) ... ok
+test_buy_failed (test_phase2.Day.test_buy_failed) ... ok
+test_day_cam_quan_stock_va_days_sai (test_phase2.Day.test_day_cam_quan_stock_va_days_sai) ... ok
+test_mot_ngay_khong_pause_22200_tick (test_phase2.Day.test_mot_ngay_khong_pause_22200_tick) ... ok
+test_vong_ngay_va_shop (test_phase2.Day.test_vong_ngay_va_shop) ... ok
+test_ca_boi_trong_dai_cua_loai (test_phase2.FishSwim.test_ca_boi_trong_dai_cua_loai) ... ok
+test_toc_do_ca (test_phase2.FishSwim.test_toc_do_ca) ... ok
+test_duoi_va_can_mat_nua_gio_lifo (test_phase2.Monster.test_duoi_va_can_mat_nua_gio_lifo) ... ok
+test_ngat_do_quai (test_phase2.Monster.test_ngat_do_quai) ... ok
+test_nong_hon_10m_khong_bi_duoi (test_phase2.Monster.test_nong_hon_10m_khong_bi_duoi) ... ok
+test_scenario_monsters_rong (test_phase2.Monster.test_scenario_monsters_rong) ... ok
+test_pause_dung_dong_ho (test_phase2.Pause.test_pause_dung_dong_ho) ... ok
+test_kho_dem_va_sai_schema_ma_2 (test_phase3.Contract.test_kho_dem_va_sai_schema_ma_2) ... ok
+test_v12_freshness (test_phase3.Contract.test_v12_freshness) ... ok
+test_id_tang_xuyen_ngay (test_phase3.Day.test_id_tang_xuyen_ngay) ... ok
+test_giu_lai_duoc_khi_con_hang_tuoi (test_phase3.Quan.test_giu_lai_duoc_khi_con_hang_tuoi) ... ok
+test_giu_tuoi_nhat_va_gia_theo_tuoi (test_phase3.Quan.test_giu_tuoi_nhat_va_gia_theo_tuoi) ... ok
+test_hang_giu_vua_uon_thi_giu_lai (test_phase3.Quan.test_hang_giu_vua_uon_thi_giu_lai) ... ok
+test_khong_giu_hang_uon (test_phase3.Quan.test_khong_giu_hang_uon) ... ok
+test_ban_giao_file_va_quan_doc_lai (test_phase3.Spoil.test_ban_giao_file_va_quan_doc_lai) ... ok
+test_hao_giu_va_quan (test_phase3.Spoil.test_hao_giu_va_quan) ... ok
+test_ngat_ghi_kho_rong (test_phase3.Spoil.test_ngat_ghi_kho_rong) ... ok
+test_nguong_30_o_buoc_dau (test_phase3.Spoil.test_nguong_30_o_buoc_dau)
+Ví dụ của ticket: cá thể bắt đầu đúng fresh 30 ươn ở bước đầu. ... ok
+test_bench_json (test_phase4.Phase4.test_bench_json) ... ok
+test_manifest_v13 (test_phase4.Phase4.test_manifest_v13) ... ok
+test_soak_json_va_tat_dinh (test_phase4.Phase4.test_soak_json_va_tat_dinh) ... ok
+test_bad_frames_raise (test_python_starter_units.Units.test_bad_frames_raise) ... ok
+test_catch_is_a_v10_button_and_attack_is_not (test_python_starter_units.Units.test_catch_is_a_v10_button_and_attack_is_not) ... ok
+test_id_allocator_continues_after_max (test_python_starter_units.Units.test_id_allocator_continues_after_max) ... ok
+test_id_sorting (test_python_starter_units.Units.test_id_sorting) ... ok
+test_input_edges_and_inherit (test_python_starter_units.Units.test_input_edges_and_inherit) ... ok
+test_live_inputs_keep_fast_tap_edge (test_python_starter_units.Units.test_live_inputs_keep_fast_tap_edge) ... ok
+test_session_steps_gather_and_dock (test_python_starter_units.Units.test_session_steps_gather_and_dock) ... ok
+test_bad_customers_exit_2 (test_quan_customers.BlackBox.test_bad_customers_exit_2) ... ok
+test_valid_fixture_visible_in_snapshot (test_quan_customers.BlackBox.test_valid_fixture_visible_in_snapshot) ... ok
+test_assigned_needs_exactly_one_dish (test_quan_customers.Fixture.test_assigned_needs_exactly_one_dish) ... ok
+test_bad_fields (test_quan_customers.Fixture.test_bad_fields) ... ok
+test_defaults_and_derived_reserved (test_quan_customers.Fixture.test_defaults_and_derived_reserved) ... ok
+test_eating_rules (test_quan_customers.Fixture.test_eating_rules) ... ok
+test_reserved_must_match_recipe (test_quan_customers.Fixture.test_reserved_must_match_recipe) ... ok
+test_reserved_over_stock_rejected (test_quan_customers.Fixture.test_reserved_over_stock_rejected) ... ok
+test_sorted_by_id (test_quan_customers.Fixture.test_sorted_by_id) ... ok
+test_stove_dish_of_unknown_order_rejected (test_quan_customers.Fixture.test_stove_dish_of_unknown_order_rejected) ... ok
+test_unfulfillable_and_reserved_have_no_dish (test_quan_customers.Fixture.test_unfulfillable_and_reserved_have_no_dish) ... ok
+test_choice_is_seeded_and_only_feasible (test_quan_customers.Spawn.test_choice_is_seeded_and_only_feasible) ... ok
+test_first_customer_at_first_tick_only (test_quan_customers.Spawn.test_first_customer_at_first_tick_only) ... ok
+test_lowest_free_table_id_first (test_quan_customers.Spawn.test_lowest_free_table_id_first) ... ok
+test_next_customers_every_interval (test_quan_customers.Spawn.test_next_customers_every_interval) ... ok
+test_no_dish_when_stock_cannot_cook_anything (test_quan_customers.Spawn.test_no_dish_when_stock_cannot_cook_anything) ... ok
+test_no_free_table_skips_turn_silently (test_quan_customers.Spawn.test_no_free_table_skips_turn_silently) ... ok
+test_no_spawn_when_closed_or_random_off (test_quan_customers.Spawn.test_no_spawn_when_closed_or_random_off) ... ok
+test_reserved_stock_is_not_available_again (test_quan_customers.Spawn.test_reserved_stock_is_not_available_again) ... ok
+test_reserves_exact_recipe (test_quan_customers.Spawn.test_reserves_exact_recipe) ... ok
+test_closing_waiting_leave_without_reputation_cost_eating_stays (test_quan_customers.TickAndLeave.test_closing_waiting_leave_without_reputation_cost_eating_stays) ... ok
+test_leave_cleans_stove_and_hand (test_quan_customers.TickAndLeave.test_leave_cleans_stove_and_hand) ... ok
+test_leave_events_ordered_by_table_id (test_quan_customers.TickAndLeave.test_leave_events_ordered_by_table_id) ... ok
+test_old_name_tick_customers_wraps_new_functions (test_quan_customers.TickAndLeave.test_old_name_tick_customers_wraps_new_functions) ... ok
+test_patience_zero_leaves_and_costs_reputation (test_quan_customers.TickAndLeave.test_patience_zero_leaves_and_costs_reputation) ... ok
+test_reputation_clamped_at_min (test_quan_customers.TickAndLeave.test_reputation_clamped_at_min) ... ok
+test_still_patient_stays (test_quan_customers.TickAndLeave.test_still_patient_stays) ... ok
+test_timers_only_waiting_patience_never_eat_timer (test_quan_customers.TickAndLeave.test_timers_only_waiting_patience_never_eat_timer) ... ok
+test_bep_nhan_don_tru_kho_va_nau (test_quan_service.QuanService.test_bep_nhan_don_tru_kho_va_nau) ... ok
+test_cung_seed_giong_byte (test_quan_service.QuanService.test_cung_seed_giong_byte) ... ok
+test_het_ca_khach_dang_an_tra_ngay_roi_quan_end (test_quan_service.QuanService.test_het_ca_khach_dang_an_tra_ngay_roi_quan_end) ... ok
+test_khach_an_xong_tra_tien_va_roi_ban (test_quan_service.QuanService.test_khach_an_xong_tra_tien_va_roi_ban) ... ok
+test_khong_nau_don_unfulfillable (test_quan_service.QuanService.test_khong_nau_don_unfulfillable) ... ok
+test_kien_nhan_thap_khong_boa (test_quan_service.QuanService.test_kien_nhan_thap_khong_boa) ... ok
+test_luong_day_du_den_paid (test_quan_service.QuanService.test_luong_day_du_den_paid) ... ok
+test_phuc_vu_nham_ban_khong_duoc (test_quan_service.QuanService.test_phuc_vu_nham_ban_khong_duoc) ... ok
+test_thieu_nguyen_lieu_khong_nau (test_quan_service.QuanService.test_thieu_nguyen_lieu_khong_nau) ... ok
+test_con_01_ticks_zero_and_end_line (test_smoke_p1.Contract.test_con_01_ticks_zero_and_end_line) ... ok
+test_con_02_deterministic_bytes (test_smoke_p1.Contract.test_con_02_deterministic_bytes) ... ok
+test_con_03_bad_input_exit_2 (test_smoke_p1.Contract.test_con_03_bad_input_exit_2) ... ok
+test_con_03_old_and_future_modes_rejected (test_smoke_p1.Contract.test_con_03_old_and_future_modes_rejected) ... ok
+test_gather_snapshot_has_gather_fields (test_smoke_p1.Contract.test_gather_snapshot_has_gather_fields) ... ok
+test_scenario_out_of_domain_exit_2 (test_smoke_p1.Contract.test_scenario_out_of_domain_exit_2) ... ok
+test_inv_01_gather_writes_inventory_quan_reads_it (test_smoke_p1.Integration.test_inv_01_gather_writes_inventory_quan_reads_it)
+Ví dụ smoke test trong PRD-0 mục G: cập bến ở tick 0, quán đọc kho đúng nội dung. ... ok
+test_inv_01_not_written_when_tick_limit_first (test_smoke_p1.Integration.test_inv_01_not_written_when_tick_limit_first) ... ok
+test_inv_bad_schema_exit_2 (test_smoke_p1.Integration.test_inv_bad_schema_exit_2) ... ok
+test_inventory_and_scenario_stock_conflict (test_smoke_p1.Integration.test_inventory_and_scenario_stock_conflict) ... ok
+test_inventory_flags_mode_mismatch_exit_2 (test_smoke_p1.Integration.test_inventory_flags_mode_mismatch_exit_2) ... ok
+test_move_01_swim_speed_after_ramp (test_smoke_p1.Movement.test_move_01_swim_speed_after_ramp)
+Bỏ 6 tick tăng tốc rồi đo 60 tick: quãng ≈ swim_speed × 1 s (±0.1). Ngang, xuống, chéo (không nhanh hơn). ... ok
+test_move_02_heading_positive_is_down (test_smoke_p1.Movement.test_move_02_heading_positive_is_down) ... ok
+test_move_03_edge_clamp (test_smoke_p1.Movement.test_move_03_edge_clamp)
+Chặn từng mép của vùng nước, kể cả d không âm (không bay lên khỏi mặt nước) và đáy d = 30. ... ok
+test_move_mep_vel_ve_0 (test_smoke_p1.Movement.test_move_mep_vel_ve_0) ... ok
+test_move_ramp_doi_huong_trong_tran (test_smoke_p1.Movement.test_move_ramp_doi_huong_trong_tran)
+Đảo từ +speed sang -speed: vận tốc chạm mục tiêu sau tối đa ramp_max_ticks tick kể từ lúc đổi input. ... ok
+test_time_ends_gather_and_keeps_hold (test_smoke_p1.Movement.test_time_ends_gather_and_keeps_hold) ... ok
+test_khoi_sai_mode_exit_2 (test_smoke_p1.ScenarioModes.test_khoi_sai_mode_exit_2) ... ok
+test_quan_fixture_khong_hop_le_exit_2 (test_smoke_p1.ScenarioModes.test_quan_fixture_khong_hop_le_exit_2) ... ok
+test_quan_player_vel_hop_le (test_smoke_p1.ScenarioModes.test_quan_player_vel_hop_le) ... ok
+test_good (test_team_check.TeamCheck.test_good) ... ok
+test_template_is_rejected (test_team_check.TeamCheck.test_template_is_rejected) ... ok
+test_too_few_members (test_team_check.TeamCheck.test_too_few_members) ... ok
+test_wrong_size_duplicate_and_outsider (test_team_check.TeamCheck.test_wrong_size_duplicate_and_outsider) ... ok
+
+----------------------------------------------------------------------
+Ran 145 tests in 49.845s
+
+OK
+Mã thoát: 0

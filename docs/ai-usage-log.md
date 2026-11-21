@@ -39,6 +39,9 @@
 | Phase | Công cụ / model | Việc | Token / chi phí ước tính | Ghi chú (AI sai ở đâu?) |
 |---|---|---|---|---|
 | 1 | Codex | Đối chiếu PRD-0 mục E–G, viết test hộp đen, chạy test trên `origin/main` và nhánh luật, điền ma trận và lưu log | Chưa đo | Bản đầu điền handle thay cho họ tên trong `TEAM.md`. Đã sửa theo thông tin thành viên cung cấp và giữ các biểu mẫu báo cáo. |
+| 2 | Codex | Rà soát sau bàn giao ngày 2026-11-21. Chạy lại cả bộ test, bàn giao kho v1.1 và vòng ngày có mua oxy trên tag `phase-2`. [Ma trận](verification/phase-2.md) | Chưa đo | Lệnh `python3` trên Windows trỏ vào lối tắt Microsoft Store, không khởi chạy được. Đã ánh xạ lời gọi của bộ test sang Python đang chạy và lưu lệnh trong log. |
+| 3 | Codex | Rà soát sau bàn giao. Kiểm kho cá thể, ngưỡng ươn, mã lỗi kho đếm và viết ca hồi quy bàn giao kho khi pause. [Ma trận](verification/phase-3.md) | Chưa đo | Test nháp đòi độ tươi trong event giữ nguyên độ chính xác nội bộ. Log cho thấy JSONL làm tròn 3 chữ số. Đã sửa kỳ vọng và chạy lại trên tag. |
+| 4 | Codex | Rà soát sau bàn giao. Chạy regression, benchmark, soak, kiểm cảnh báo và thử ZIP Release. [Ma trận](verification/phase-4.md) | Chưa đo | Lượt clone đầu bị sandbox chặn tiến trình Git. Đã chạy lại có cấp quyền, xác nhận khởi động từ clone GitHub sạch trên Ubuntu WSL và chụp cảnh báo ở hai chế độ hiển thị. |
 
 ## linkiewinkie
 

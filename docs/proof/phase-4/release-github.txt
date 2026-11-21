@@ -1,0 +1,12 @@
+2026-11-21 | phase-4 | 5e188e71a2ef1bda280b54628d4e4da1d6a8b2f9 | Windows 11, Python 3.13.17
+GET /repos/justapea25/K5-L3B-LAB-Day12-AI-SDLC-MATH/releases/tags/v1.0.0 trên GitHub API
+URL: https://github.com/justapea25/K5-L3B-LAB-Day12-AI-SDLC-MATH/releases/tag/v1.0.0
+Tag: v1.0.0
+published_at (UTC): 2026-11-21T04:38:41Z
+Tiêu đề trong release notes: Quán Ăn Chợ Nổi v1.0.0 — nhóm Math, Cách chạy (Python ≥ 3.10, không cần cài thêm), Điểm mới, Số đo (máy dev), Giới hạn đã biết
+Tệp đính kèm: cho-noi-v1.0.0.zip
+ZIP: 165652 byte
+SHA-256: a2b0183d76d13d4e4d829210140b86093ecdb2cf156e556091d2cb4c90446fef
+python -m chonoi.headless --mode day --days 1 --seed 1 --ticks 22200 --out proof.jsonl
+Mã thoát: 0
+Dòng end: {"type": "end", "ticks": 22200, "sim_tick": 22200, "mode": "day", "state": "finished", "reason": "days_complete", "days_completed": 1, "money": 0, "earned": 0, "reputation": 3.0, "score": 300}

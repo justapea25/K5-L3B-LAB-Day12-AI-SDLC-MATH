@@ -1,0 +1,213 @@
+2026-11-21 | phase-1 | b055dfe4b969a4ecf3ece1b3bbf736053d31247d | Windows 11, Python 3.13.17
+
+python -m unittest discover -s tests -v
+Windows: lời gọi tiến trình con python3 được ánh xạ sang trình thông dịch Python đang chạy.
+test_choke_sau_moi_chu_ky (test_gather_oxy.Choke.test_choke_sau_moi_chu_ky) ... ok
+test_len_mat_nuoc_reset_dem_ngat (test_gather_oxy.Choke.test_len_mat_nuoc_reset_dem_ngat) ... ok
+test_ngat_mat_gio_kho_rong (test_gather_oxy.Choke.test_ngat_mat_gio_kho_rong) ... ok
+test_day_thi_hold_full_khong_them (test_gather_oxy.Hold.test_day_thi_hold_full_khong_them) ... ok
+test_them_vao_cuoi_lifo (test_gather_oxy.Hold.test_them_vao_cuoi_lifo) ... ok
+test_duoi_nuoc_tru_1_moi_tick (test_gather_oxy.Oxygen.test_duoi_nuoc_tru_1_moi_tick) ... ok
+test_mat_nuoc_hoi_va_kep_max (test_gather_oxy.Oxygen.test_mat_nuoc_hoi_va_kep_max) ... ok
+test_oxygen_empty_dung_mot_lan (test_gather_oxy.Oxygen.test_oxygen_empty_dung_mot_lan) ... ok
+test_dive_roi_surface (test_gather_oxy.Zone.test_dive_roi_surface) ... ok
+test_bat_ca_o_buoc_cuoi_uu_tien_id_va_chuyen_kho (test_integration.Phase1Integration.test_bat_ca_o_buoc_cuoi_uu_tien_id_va_chuyen_kho) ... FAIL
+test_dock_o_buoc_cuoi_va_kho_tat_dinh (test_integration.Phase1Integration.test_dock_o_buoc_cuoi_va_kho_tat_dinh) ... ok
+test_gio_thieu_cho_giu_ca_va_khong_dat_hoi_chieu (test_integration.Phase1Integration.test_gio_thieu_cho_giu_ca_va_khong_dat_hoi_chieu) ... FAIL
+test_hai_nut_vua_moc_lai_o_buoc_cuoi_roi_chuyen_kho (test_integration.Phase1Integration.test_hai_nut_vua_moc_lai_o_buoc_cuoi_roi_chuyen_kho) ... FAIL
+test_ngat_bo_gio_theo_lifo_va_xuat_kho_rong (test_integration.Phase1Integration.test_ngat_bo_gio_theo_lifo_va_xuat_kho_rong) ... FAIL
+test_oxygen_empty_co_payload_theo_contract (test_integration.Phase1Integration.test_oxygen_empty_co_payload_theo_contract) ... FAIL
+test_quan_goi_mon_theo_kho_va_lich_khach (test_integration.Phase1Integration.test_quan_goi_mon_theo_kho_va_lich_khach) ...
+  test_quan_goi_mon_theo_kho_va_lich_khach (test_integration.Phase1Integration.test_quan_goi_mon_theo_kho_va_lich_khach) (event='customer_arrived') ... FAIL
+  test_quan_goi_mon_theo_kho_va_lich_khach (test_integration.Phase1Integration.test_quan_goi_mon_theo_kho_va_lich_khach) (event='no_dish') ... FAIL
+test_quan_phuc_vu_o_tick_het_kien_nhan_va_dong_ca (test_integration.Phase1Integration.test_quan_phuc_vu_o_tick_het_kien_nhan_va_dong_ca) ... FAIL
+test_tick_limit_giu_nguyen_file_kho_da_co (test_integration.Phase1Integration.test_tick_limit_giu_nguyen_file_kho_da_co) ... ok
+test_state_input_and_clean_stop (test_live.LiveServerTest.test_state_input_and_clean_stop) ... ok
+test_bad_frames_raise (test_python_starter_units.Units.test_bad_frames_raise) ... ok
+test_catch_is_a_v10_button_and_attack_is_not (test_python_starter_units.Units.test_catch_is_a_v10_button_and_attack_is_not) ... ok
+test_id_allocator_continues_after_max (test_python_starter_units.Units.test_id_allocator_continues_after_max) ... ok
+test_id_sorting (test_python_starter_units.Units.test_id_sorting) ... ok
+test_input_edges_and_inherit (test_python_starter_units.Units.test_input_edges_and_inherit) ... ok
+test_live_inputs_keep_fast_tap_edge (test_python_starter_units.Units.test_live_inputs_keep_fast_tap_edge) ... ok
+test_session_steps_gather_and_dock (test_python_starter_units.Units.test_session_steps_gather_and_dock) ... ok
+test_con_01_ticks_zero_and_end_line (test_smoke_p1.Contract.test_con_01_ticks_zero_and_end_line) ... ok
+test_con_02_deterministic_bytes (test_smoke_p1.Contract.test_con_02_deterministic_bytes) ... ok
+test_con_03_bad_input_exit_2 (test_smoke_p1.Contract.test_con_03_bad_input_exit_2) ... ok
+test_con_03_old_and_future_modes_rejected (test_smoke_p1.Contract.test_con_03_old_and_future_modes_rejected) ... ok
+test_gather_snapshot_has_gather_fields (test_smoke_p1.Contract.test_gather_snapshot_has_gather_fields) ... ok
+test_scenario_out_of_domain_exit_2 (test_smoke_p1.Contract.test_scenario_out_of_domain_exit_2) ... ok
+test_inv_01_gather_writes_inventory_quan_reads_it (test_smoke_p1.Integration.test_inv_01_gather_writes_inventory_quan_reads_it)
+Ví dụ smoke test trong PRD-0 mục G: cập bến ở tick 0, quán đọc kho đúng nội dung. ... ok
+test_inv_01_not_written_when_tick_limit_first (test_smoke_p1.Integration.test_inv_01_not_written_when_tick_limit_first) ... ok
+test_inv_bad_schema_exit_2 (test_smoke_p1.Integration.test_inv_bad_schema_exit_2) ... ok
+test_inventory_and_scenario_stock_conflict (test_smoke_p1.Integration.test_inventory_and_scenario_stock_conflict) ... ok
+test_inventory_flags_mode_mismatch_exit_2 (test_smoke_p1.Integration.test_inventory_flags_mode_mismatch_exit_2) ... ok
+test_move_01_swim_speed_after_ramp (test_smoke_p1.Movement.test_move_01_swim_speed_after_ramp)
+Bỏ 6 tick tăng tốc rồi đo 60 tick: quãng ≈ swim_speed × 1 s (±0.1). Ngang, xuống, chéo (không nhanh hơn). ... ok
+test_move_02_heading_positive_is_down (test_smoke_p1.Movement.test_move_02_heading_positive_is_down) ... ok
+test_move_03_edge_clamp (test_smoke_p1.Movement.test_move_03_edge_clamp)
+Chặn từng mép của vùng nước, kể cả d không âm (không bay lên khỏi mặt nước) và đáy d = 30. ... ok
+test_move_mep_vel_ve_0 (test_smoke_p1.Movement.test_move_mep_vel_ve_0) ... ok
+test_move_ramp_doi_huong_trong_tran (test_smoke_p1.Movement.test_move_ramp_doi_huong_trong_tran)
+Đảo từ +speed sang -speed: vận tốc chạm mục tiêu sau tối đa ramp_max_ticks tick kể từ lúc đổi input. ... ok
+test_time_ends_gather_and_keeps_hold (test_smoke_p1.Movement.test_time_ends_gather_and_keeps_hold) ... ok
+test_khoi_sai_mode_exit_2 (test_smoke_p1.ScenarioModes.test_khoi_sai_mode_exit_2) ... ok
+test_quan_fixture_khong_hop_le_exit_2 (test_smoke_p1.ScenarioModes.test_quan_fixture_khong_hop_le_exit_2) ... ok
+test_quan_player_vel_hop_le (test_smoke_p1.ScenarioModes.test_quan_player_vel_hop_le) ... ok
+test_good (test_team_check.TeamCheck.test_good) ... ok
+test_template_is_rejected (test_team_check.TeamCheck.test_template_is_rejected) ... ok
+test_too_few_members (test_team_check.TeamCheck.test_too_few_members) ... ok
+test_wrong_size_duplicate_and_outsider (test_team_check.TeamCheck.test_wrong_size_duplicate_and_outsider) ... ok
+
+======================================================================
+FAIL: test_bat_ca_o_buoc_cuoi_uu_tien_id_va_chuyen_kho (test_integration.Phase1Integration.test_bat_ca_o_buoc_cuoi_uu_tien_id_va_chuyen_kho)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests\test_integration.py", line 99, in test_bat_ca_o_buoc_cuoi_uu_tien_id_va_chuyen_kho
+    self.assertEqual([(row["tick"], row["name"]) for row in events(rows)],
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     [(1, "fish_caught"), (1, "gather_end")])
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [(1, 'gather_end')] != [(1, 'fish_caught'), (1, 'gather_end')]
+
+First differing element 0:
+(1, 'gather_end')
+(1, 'fish_caught')
+
+Second list contains 1 additional elements.
+First extra element 1:
+(1, 'gather_end')
+
+- [(1, 'gather_end')]
++ [(1, 'fish_caught'), (1, 'gather_end')]
+
+======================================================================
+FAIL: test_gio_thieu_cho_giu_ca_va_khong_dat_hoi_chieu (test_integration.Phase1Integration.test_gio_thieu_cho_giu_ca_va_khong_dat_hoi_chieu)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests\test_integration.py", line 120, in test_gio_thieu_cho_giu_ca_va_khong_dat_hoi_chieu
+    self.assertEqual([row["data"] for row in events(rows, "hold_full")],
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     [{"action": "catch", "fish_id": "F1", "required": GATHER["fish_yield"]["ca_linh"], "free": 1}])
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != [{'action': 'catch', 'fish_id': 'F1', 'required': 3, 'free': 1}]
+
+Second list contains 1 additional elements.
+First extra element 0:
+{'action': 'catch', 'fish_id': 'F1', 'required': 3, 'free': 1}
+
+- []
++ [{'action': 'catch', 'fish_id': 'F1', 'free': 1, 'required': 3}]
+
+======================================================================
+FAIL: test_hai_nut_vua_moc_lai_o_buoc_cuoi_roi_chuyen_kho (test_integration.Phase1Integration.test_hai_nut_vua_moc_lai_o_buoc_cuoi_roi_chuyen_kho)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests\test_integration.py", line 85, in test_hai_nut_vua_moc_lai_o_buoc_cuoi_roi_chuyen_kho
+    self.assertEqual([(row["tick"], row["name"]) for row in events(rows)],
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     [(1, "node_regrown"), (1, "gather"), (1, "gather_end")])
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [(1, 'node_regrown'), (1, 'gather_end')] != [(1, 'node_regrown'), (1, 'gather'), (1, 'gather_end')]
+
+First differing element 1:
+(1, 'gather_end')
+(1, 'gather')
+
+Second list contains 1 additional elements.
+First extra element 2:
+(1, 'gather_end')
+
+- [(1, 'node_regrown'), (1, 'gather_end')]
++ [(1, 'node_regrown'), (1, 'gather'), (1, 'gather_end')]
+?                          +++++++++++++++
+
+
+======================================================================
+FAIL: test_ngat_bo_gio_theo_lifo_va_xuat_kho_rong (test_integration.Phase1Integration.test_ngat_bo_gio_theo_lifo_va_xuat_kho_rong)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests\test_integration.py", line 139, in test_ngat_bo_gio_theo_lifo_va_xuat_kho_rong
+    self.assertEqual(events(rows, "faint")[0]["data"], {"cause": "choke", "hp": 0, "lost": hold[::-1]})
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'pos': [20.0, 5.0], 'lost': {'bong_sung': 1, 'ca_linh': 1, 'ca_loc': 1}} != {'cause': 'choke', 'hp': 0, 'lost': ['bong_sung', 'ca_linh', 'ca_loc']}
+- {'lost': {'bong_sung': 1, 'ca_linh': 1, 'ca_loc': 1}, 'pos': [20.0, 5.0]}
++ {'cause': 'choke', 'hp': 0, 'lost': ['bong_sung', 'ca_linh', 'ca_loc']}
+
+======================================================================
+FAIL: test_oxygen_empty_co_payload_theo_contract (test_integration.Phase1Integration.test_oxygen_empty_co_payload_theo_contract)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests\test_integration.py", line 125, in test_oxygen_empty_co_payload_theo_contract
+    self.assertEqual([(row["tick"], row["data"]) for row in events(rows, "oxygen_empty")],
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     [(1, {"oxygen_ticks": 0})])
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [(1, {'pos': [20.0, 5.0]})] != [(1, {'oxygen_ticks': 0})]
+
+First differing element 0:
+(1, {'pos': [20.0, 5.0]})
+(1, {'oxygen_ticks': 0})
+
+- [(1, {'pos': [20.0, 5.0]})]
++ [(1, {'oxygen_ticks': 0})]
+
+======================================================================
+FAIL: test_quan_goi_mon_theo_kho_va_lich_khach (test_integration.Phase1Integration.test_quan_goi_mon_theo_kho_va_lich_khach) (event='customer_arrived')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests\test_integration.py", line 149, in test_quan_goi_mon_theo_kho_va_lich_khach
+    self.assertEqual([(row["tick"], row["name"]) for row in order_events], [(first_tick, event_name)])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != [(120, 'customer_arrived')]
+
+Second list contains 1 additional elements.
+First extra element 0:
+(120, 'customer_arrived')
+
+- []
++ [(120, 'customer_arrived')]
+
+======================================================================
+FAIL: test_quan_goi_mon_theo_kho_va_lich_khach (test_integration.Phase1Integration.test_quan_goi_mon_theo_kho_va_lich_khach) (event='no_dish')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests\test_integration.py", line 149, in test_quan_goi_mon_theo_kho_va_lich_khach
+    self.assertEqual([(row["tick"], row["name"]) for row in order_events], [(first_tick, event_name)])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != [(120, 'no_dish')]
+
+Second list contains 1 additional elements.
+First extra element 0:
+(120, 'no_dish')
+
+- []
++ [(120, 'no_dish')]
+
+======================================================================
+FAIL: test_quan_phuc_vu_o_tick_het_kien_nhan_va_dong_ca (test_integration.Phase1Integration.test_quan_phuc_vu_o_tick_het_kien_nhan_va_dong_ca)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests\test_integration.py", line 179, in test_quan_phuc_vu_o_tick_het_kien_nhan_va_dong_ca
+    self.assertEqual([(row["tick"], row["name"]) for row in events(rows)],
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     [(1, "served"), (1, "paid"), (1, "quan_end")])
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [(1, 'quan_end')] != [(1, 'served'), (1, 'paid'), (1, 'quan_end')]
+
+First differing element 0:
+(1, 'quan_end')
+(1, 'served')
+
+Second list contains 2 additional elements.
+First extra element 1:
+(1, 'paid')
+
+- [(1, 'quan_end')]
++ [(1, 'served'), (1, 'paid'), (1, 'quan_end')]
+
+----------------------------------------------------------------------
+Ran 50 tests in 18.415s
+
+FAILED (failures=8)
+Mã thoát: 1
