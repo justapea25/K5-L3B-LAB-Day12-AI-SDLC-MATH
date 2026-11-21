@@ -1,10 +1,10 @@
 # justapea25 — phản tư cá nhân (≤ 200 từ)
 
-> Bản nháp sau Phase 1; cập nhật cuối buổi.
-
-- Tôi đã làm (kèm link commit):
-  - Gather lát 1: oxy, ngạt, Máu, ngất, giỏ LIFO ([c90067c](../../../../commit/c90067c), test [e7e16b0](../../../../commit/e7e16b0), PR [#1](../../../../pull/1)).
-  - Dựng khung chung để cả nhóm làm song song không conflict: tách file lát 2–4, hợp đồng khách và sự kiện, TEAM/nhật ký AI/clarify ([998cfd5](../../../../commit/998cfd5), [9e34f4e](../../../../commit/9e34f4e), [30d0b2d](../../../../commit/30d0b2d), PR [#2](../../../../pull/2)).
-- Tôi đã review (kèm link): (bổ sung khi review PR của các lát khác)
-- AI sai ở đâu và tôi phát hiện thế nào: AI viết test dựng scenario ở mặt nước với bộ đếm ngạt > 0, bị headless từ chối (mã 2). Tôi chạy toàn bộ test, thấy đỏ, đọc lỗi và đổi scenario thành bắt đầu dưới mặt nước rồi bơi lên.
-- Điều tôi học được: chốt hợp đồng (tên hàm, schema, sự kiện) và chia file theo người ngay từ đầu giúp nhóm đông làm song song mà gần như không conflict.
+- **Tôi đã làm:** Lead/Integrator và người code chính.
+  - Phase 1: lát 1 gather ([#1](https://github.com/justapea25/K5-L3B-LAB-Day12-AI-SDLC-MATH/pull/1)), khung tách file cho lát 2–4 ([#2](https://github.com/justapea25/K5-L3B-LAB-Day12-AI-SDLC-MATH/pull/2)).
+  - Phase 2: contract v1.1, cá bơi, Cá Sấu, `day`, Shop, pause ([#7](https://github.com/justapea25/K5-L3B-LAB-Day12-AI-SDLC-MATH/pull/7), [#12](https://github.com/justapea25/K5-L3B-LAB-Day12-AI-SDLC-MATH/pull/12)).
+  - Phase 3: kho cá thể và độ tươi, mở rộng `burn`/`net` ([#13](https://github.com/justapea25/K5-L3B-LAB-Day12-AI-SDLC-MATH/pull/13), [#15](https://github.com/justapea25/K5-L3B-LAB-Day12-AI-SDLC-MATH/pull/15)).
+  - Phase 4: bench, soak, cảnh báo, Release v1.0.0 ([#16](https://github.com/justapea25/K5-L3B-LAB-Day12-AI-SDLC-MATH/pull/16)); sau đó UI, demo (#17–#28).
+- **Tôi đã review / giúp:** đối chiếu test QA của @Kaylez-TXL với PRD-0 rồi sửa payload lát 1 ([#8](https://github.com/justapea25/K5-L3B-LAB-Day12-AI-SDLC-MATH/pull/8)); gỡ conflict docs của @linkiewinkie ([#10](https://github.com/justapea25/K5-L3B-LAB-Day12-AI-SDLC-MATH/pull/10)) và approve [#27](https://github.com/justapea25/K5-L3B-LAB-Day12-AI-SDLC-MATH/pull/27); kiểm kỹ năng F/G của @LETHESHIYING tắt mặc định ở headless trước khi tích hợp; gộp tranh chibi của @Kaylez-TXL ([#25](https://github.com/justapea25/K5-L3B-LAB-Day12-AI-SDLC-MATH/pull/25)). Các PR #5, #6, #9, #11, #20, #23 do tác giả tự gộp, tôi kiểm lại khi tích hợp.
+- **AI sai ở đâu:** chèn khối "Việc cần làm" nhầm vào màn lặn; tôi phát hiện khi chụp màn hình bằng Chrome headless. AI viết kỳ vọng test bắt cá sai bán kính lõi; test đỏ, tôi đối chiếu luật rồi sửa test.
+- **Bài học:** chốt hợp đồng, chia file theo người sớm thì ít conflict; kiểm UI bằng ảnh chụp thật.

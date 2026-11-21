@@ -8,6 +8,9 @@
 |---|---|---|---|---|
 | 1 | Claude Code (Claude Opus 5.5) | Code gather lát 1 (oxy, ngạt, Máu, ngất, `_add_to_hold`) + 9 test | chưa đo | Test reset bộ đếm ngạt bị đỏ: AI dựng scenario ở mặt nước với `zero_oxy_ticks > 0`, bị scenario từ chối (mã 2); sửa thành bắt đầu ngay dưới mặt nước rồi bơi lên. Tôi đọc lại luật và chạy toàn bộ test (41 OK) trước khi gộp |
 | 1 | Claude Code (Claude Opus 5.5) | Dựng khung lát 2–4 (tách file, nối lời gọi), hợp đồng khách/sự kiện | chưa đo | Lần đầu AI ghi tên người vào docstring/TODO; tôi yêu cầu chỉ ghi theo lát |
+| 2 | Claude Code (Claude Opus 5.5) | Contract v1.1 (day_plan tính từ công thức), cá bơi/sinh, Cá Sấu, `day`, Shop, pause | chưa đo | AI để payload `faint`/`oxygen_empty`/`hold_full` theo giả định; test QA đối chiếu PRD-0 bắt được, tôi sửa theo PRD (#8). Test cũ nút `attack`, mode `day` đổi có ghi lý do |
+| 3 | Claude Code (Claude Opus 5.5) | Kho cá thể v1.2 (240 đơn vị/điểm tươi), giữ chỗ theo id, giá theo tươi, chuyển fixture cũ; mở rộng burn/net | chưa đo | `scenario.py` truyền kho dạng ngoài vào hàm cần dạng nội bộ (`KeyError: units`); lộ ra khi chạy test hộp đen, tôi sửa chỗ chuyển đổi. Kỳ vọng test bắt cá sai bán kính lõi, tôi đối chiếu luật rồi sửa test |
+| 4 | Claude Code (Claude Opus 5.5) | bench/soak, cảnh báo + tương phản cao, Release v1.0.0; sau tag: UI, demo, âm thanh + phụ đề, Cá Sấu SVG | chưa đo | AI chèn khối chỉ dẫn quán nhầm vào màn lặn và để tên món hiện `[object Object]`; tôi phát hiện bằng ảnh chụp Chrome headless. Bench đầu tiên lệch `avg_fps` do làm tròn, sửa theo đúng định nghĩa đề |
 
 ## LETHESHIYING
 
