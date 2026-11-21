@@ -18,6 +18,8 @@
 |---|---|---|---|---|
 | 1 | Claude Code (Claude Sonnet 5.5) | Đọc repo, phân tích phần việc; code gather lát 2 (`try_gather`, `try_catch`) + 16 test hộp đen | chưa đo | 2 test đầu bị đỏ do AI viết sai test, không phải sai luật: (1) scenario đặt cá ở mặt nước bị headless từ chối (mã 2, cá phải ở dưới nước); (2) test hồi chiêu lệch 1 tick vì bấm hai lần liên tiếp không có frame thả nút nên không có cạnh lên. Tôi đọc lỗi, sửa test, chạy lại toàn bộ (57 OK) trước khi đẩy |
 | 1 | Claude Code (Claude Sonnet 5.5) | Soạn giả định gửi PO, điền TEAM/members/nhật ký | chưa đo | AI đưa tên hiển thị tạm là handle vì không biết họ tên thật; tôi cần tự thay |
+| 2 | Claude Code (Claude Sonnet 5.5) | Giải quyết conflict khi merge `main`; sửa `gather`, `fish_caught`, `hold_full` theo PRD-0 | chưa đo | AI tự đặt tên trường sự kiện (`count`, `hold_count`) khác PRD-0 (`amount`, `yield`, `hold_full {action, id, required, free}`); phát hiện vì test tích hợp của QA đỏ sau khi merge `main`. Sửa và chạy lại toàn bộ test trước khi đẩy |
+| 3–4 | Claude Code (Claude Sonnet 5.5) | Kỹ năng thêm: giữ F lưới lớn, giữ G tăng tốc (`gather_skills.py`, 17 test), nối `live.py`/`index.html`; điều tra lỗi giỏ và bắt cá | chưa đo | Lần đầu script thay thế file không khớp vì file dùng CRLF; test dựng giỏ thiếu trường `fresh` bị headless từ chối. Điều tra "giỏ lỗi / không bắt được cá": chạy 100 ván ngẫu nhiên và thử qua server live, không tái hiện được lỗi logic; AI chỉ nêu nguyên nhân khả dĩ (hồi chiêu nuốt phím, cá linh cần đủ 3 chỗ, bộ gõ Telex), tôi tự thử lại trên game |
 
 ## viethoang126
 
