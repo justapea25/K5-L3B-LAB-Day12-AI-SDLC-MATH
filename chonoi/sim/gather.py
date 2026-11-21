@@ -21,6 +21,7 @@ from .. import inventory as inv
 from . import gather_fish as fish
 from . import gather_harvest as harvest
 from . import gather_monsters as monsters
+from . import gather_skills as skills
 from .ramp import ramp_velocity
 
 TICK = 60.0
@@ -67,6 +68,10 @@ class GatherSim:
         self.day = day  # chế độ day truyền vào; gather độc lập = bố trí Ngày 1
         # mở rộng net: {level, price, catch_radius, max_schools} của cấp đang áp dụng; None = luật lõi (cấp 0)
         self.net = net if "net" in tuning.get("extensions", ()) else None
+        # kỹ năng thêm (F lưới, G tăng tốc): None = tắt, luật lõi
+        self.skills = skills.build(tuning)
+        self.net_on = False
+        self.sprint_on = False
         for n in self.nodes:
             ids.reserve(n["id"])
         # đàn cá: scenario.fish THAY đàn ban đầu; random_fish=false tắt cá mặc định, bơi và sinh
@@ -90,7 +95,7 @@ class GatherSim:
         return [inv.item_out(it) for it in inv.by_id(self.hold)]
 
     def snapshot(self) -> dict:
-        return {
+        snap = {
             "player": {"pos": self.pos, "vel": self.vel, "heading_deg": self.heading,
                        "oxygen_ticks": self.oxygen_ticks, "oxygen_max_ticks": self.oxygen_max,
                        "hp": self.hp, "hp_max": self.t["hp_max"], "zero_oxy_ticks": self.zero_oxy_ticks,
@@ -105,10 +110,12 @@ class GatherSim:
                       "age_ticks": f["age_ticks"]} for f in sort_by_id(self.fish)],
             "monsters": monsters.snapshot(self),
         }
+        return skills.annotate(self, snap)
 
     # --- một bước ---------------------------------------------------------------
     def step(self, inp):
         events = []
+        skills.begin_step(self, inp)
         # 1. đồng hồ và hàng có sẵn: giảm bộ đếm, nút mọc lại
         self.time_left_ticks = max(0, self.time_left_ticks - 1)
         self.invuln_ticks = max(0, self.invuln_ticks - 1)
@@ -163,7 +170,7 @@ class GatherSim:
             return False
 
         before = self.oxygen_ticks
-        self.oxygen_ticks = max(0, self.oxygen_ticks - 1)
+        self.oxygen_ticks = max(0, self.oxygen_ticks - 1 - skills.extra_oxygen_drain(self))
         if before > 0 and self.oxygen_ticks == 0:
             events.append(("oxygen_empty", {"oxygen_ticks": self.oxygen_ticks}))
         if self.oxygen_ticks > 0:
@@ -213,7 +220,7 @@ class GatherSim:
         events.append(("gather_end", {"reason": reason, "inventory": {"items": self.inventory_items()}}))
 
     def _move(self, inp):
-        speed = self.t["swim_speed"]
+        speed = self.t["swim_speed"] * skills.speed_factor(self)
         mx, md = inp.move
         self.vel = ramp_velocity(self, (mx * speed, md * speed), int(self.t["ramp_max_ticks"]))
         if (mx, md) != (0.0, 0.0):

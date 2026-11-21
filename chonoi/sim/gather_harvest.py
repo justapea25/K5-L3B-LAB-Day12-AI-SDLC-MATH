@@ -17,18 +17,21 @@ Mở rộng net (TODO, khi bật "net" trong extensions): sim.net = {level, catc
 import math
 
 from ..ids import sort_by_id
+from . import gather_skills as skills
 
 TICK = 60.0
 
 
+def _within(sim, items, radius):
+    """Các phần tử trong `radius`, gần nhất trước; bằng khoảng cách thì id nhỏ hơn (sort_by_id rồi sort ổn định)."""
+    near = [(math.dist(sim.pos, e["pos"]), e) for e in sort_by_id(items)]
+    return [e for d, e in sorted((x for x in near if x[0] <= radius), key=lambda x: x[0])]
+
+
 def _nearest(sim, items, radius):
-    """Phần tử gần người chơi nhất trong `radius`; bằng khoảng cách thì id nhỏ hơn (sort_by_id ổn định)."""
-    best, best_d = None, None
-    for e in sort_by_id(items):
-        d = math.dist(sim.pos, e["pos"])
-        if d <= radius and (best_d is None or d < best_d):
-            best, best_d = e, d
-    return best
+    """Phần tử gần người chơi nhất trong `radius`, hoặc None."""
+    found = _within(sim, items, radius)
+    return found[0] if found else None
 
 
 def try_gather(sim, events):
@@ -51,24 +54,28 @@ def try_gather(sim, events):
 
 
 def try_catch(sim, events):
-    """Bắt cá gần nhất trong catch_radius, chỉ khi hết hồi chiêu và đang dưới nước.
+    """Bắt cá gần nhất trong bán kính bắt, chỉ khi hết hồi chiêu và đang dưới nước.
 
-    - Giỏ không đủ chỗ cho cả `fish_yield[kind]` món: phát `hold_full`, cá ở lại, KHÔNG vào hồi chiêu.
-    - Thành công: xóa cá khỏi đàn, phát `fish_caught`, đặt catch_cd_ticks = catch_cooldown_s * 60.
+    - Luật lõi: bán kính catch_radius, một đàn mỗi lần.
+    - Kỹ năng lưới (giữ F, xem gather_skills.py): bán kính lớn hơn, tối đa net_max_schools đàn, gần nhất trước.
+    - Giỏ không đủ chỗ cho cả `fish_yield[kind]` món: phát `hold_full`, cá ở lại. Nếu CHƯA bắt được đàn nào thì
+      KHÔNG vào hồi chiêu; đã bắt được rồi thì dừng ở đàn không vừa.
+    - Có bắt được: phát `fish_caught` cho từng đàn, đặt catch_cd_ticks = catch_cooldown_s * 60 một lần.
     """
     if sim.catch_cd_ticks > 0 or sim._at_surface():
         return
-    if getattr(sim, "net", None):
-        return _net_catch(sim, events)
-    fish = _nearest(sim, sim.fish, float(sim.t["catch_radius"]))
-    if fish is None:
-        return
-    count = int(sim.t["fish_yield"][fish["kind"]])
-    if not sim._add_to_hold(fish["kind"], count, events, {"action": "catch", "fish_id": fish["id"]}):
-        return
-    sim.fish.remove(fish)
-    sim.catch_cd_ticks = int(round(sim.t["catch_cooldown_s"] * TICK))
-    events.append(("fish_caught", {"fish_id": fish["id"], "kind": fish["kind"], "yield": count}))
+    if not sim.net_on and getattr(sim, "net", None):
+        return _net_catch(sim, events)  # mở rộng net (cấp mua ở Shop); kỹ năng giữ F có ưu tiên khi đang bật
+    caught = 0
+    for fish in _within(sim, sim.fish, skills.catch_radius(sim))[:skills.max_catch(sim)]:
+        count = int(sim.t["fish_yield"][fish["kind"]])
+        if not sim._add_to_hold(fish["kind"], count, events, {"action": "catch", "fish_id": fish["id"]}):
+            break
+        sim.fish.remove(fish)
+        events.append(("fish_caught", {"fish_id": fish["id"], "kind": fish["kind"], "yield": count}))
+        caught += 1
+    if caught:
+        sim.catch_cd_ticks = int(round(sim.t["catch_cooldown_s"] * TICK))
 
 
 def _net_catch(sim, events):

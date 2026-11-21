@@ -35,7 +35,8 @@ function currentInput() {
   let dy = (down.has("d") ? 1 : 0) - (down.has("u") ? 1 : 0);   // gather: xuống = d dương
   if (mode === "quan") dy = -dy;                                // quan: lên (bắc) = z dương
   return { move: [dx, dy], interact: down.has("interact"), catch: down.has("catch"),
-           pause: down.has("pause"), shop_done: down.has("shop_done") };
+           pause: down.has("pause"), shop_done: down.has("shop_done"),
+           net: down.has("net"), sprint: down.has("sprint") };
 }
 function pushInput() {
   const s = JSON.stringify(currentInput());
@@ -54,12 +55,21 @@ async function flush() {
   }
   inflight = false;
 }
-function keyName(e) { return e.key.length === 1 ? e.key.toLowerCase() : e.key.toLowerCase(); }
+// Dùng phím VẬT LÝ (e.code) cho chữ/số/Space để bộ gõ (Telex "ee" -> "ê") hay bố cục bàn phím không làm mất phím E, F, G, WASD.
+function keyName(e) {
+  const c = e.code || "";
+  if (/^Key[A-Z]$/.test(c)) return c.slice(3).toLowerCase();
+  if (/^Digit[0-9]$/.test(c)) return c.slice(5);
+  if (c === "Space") return " ";
+  return e.key.toLowerCase();
+}
 addEventListener("keydown", (e) => {
   const k = keyName(e);
   if (e.repeat) { if (k === " " || k.startsWith("arrow")) e.preventDefault(); return; }
   if (MOVE_KEYS[k]) { down.add(MOVE_KEYS[k]); e.preventDefault(); }
   else if (k === "e") down.add("interact");
+  else if (k === "f") down.add("net");
+  else if (k === "g") down.add("sprint");
   else if (k === " ") { down.add("catch"); e.preventDefault(); }
   else if (k === "h") { setContrast(!highContrast); }
   else if (k === "p" || k === "escape") down.add("pause");
@@ -72,6 +82,8 @@ addEventListener("keyup", (e) => {
   const k = keyName(e);
   if (MOVE_KEYS[k]) down.delete(MOVE_KEYS[k]);
   else if (k === "e") down.delete("interact");
+  else if (k === "f") down.delete("net");
+  else if (k === "g") down.delete("sprint");
   else if (k === " ") down.delete("catch");
   else if (k === "p" || k === "escape") down.delete("pause");
   else if (k === "enter") down.delete("shop_done");
@@ -248,7 +260,9 @@ function drawGather(w, h) {
   if (p) {
     const px = sx(p.pos[0]), py = sy(p.pos[1]);
     const underwater = p.at_surface === undefined ? p.pos[1] > 0.5 : !p.at_surface;
-    if (meta.catch_radius && underwater) { ctx.strokeStyle = "rgba(255,255,255,.25)"; ctx.beginPath(); ctx.arc(px, py, meta.catch_radius * s, 0, Math.PI * 2); ctx.stroke(); }
+    const sk = p.skills || {};
+    if (sk.net_on && underwater) { ctx.fillStyle = "rgba(255,230,120,.12)"; ctx.strokeStyle = "rgba(255,230,120,.8)"; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(px, py, sk.net_radius * s, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.lineWidth = 1; }
+    else if (meta.catch_radius && underwater) { ctx.strokeStyle = "rgba(255,255,255,.25)"; ctx.beginPath(); ctx.arc(px, py, meta.catch_radius * s, 0, Math.PI * 2); ctx.stroke(); }
     if (meta.interact_radius && !underwater) { ctx.strokeStyle = "rgba(255,255,255,.35)"; ctx.beginPath(); ctx.arc(px, py, meta.interact_radius * s, 0, Math.PI * 2); ctx.stroke(); }
     if (!(p.invuln_ticks > 0 && Math.floor(snap.tick / 5) % 2)) {
       ctx.fillStyle = "#ff8a3d"; ctx.beginPath(); ctx.arc(px, py, 0.6 * s, 0, Math.PI * 2); ctx.fill();
@@ -259,6 +273,10 @@ function drawGather(w, h) {
   // HUD trên (nền tối cho dễ đọc)
   panel(6, 4, w - 12, snap.day_plan ? 106 : 82);
   text("⏱ " + fmtTime(snap.time_left_ticks), 14, 30, { size: 22, color: snap.time_left_ticks <= 1800 ? "#ff8a80" : "#e8eef2" });
+  // kỹ năng thêm (F lưới, G tăng tốc) và báo giỏ đầy: dưới khung HUD
+  if (p && p.skills) text((p.skills.net_on ? "Lưới lớn (F) " : "") + (p.skills.sprint_on ? "Tăng tốc (G)" : ""), 14, 108, { size: 15, color: "#ffe082" });
+  const full = (snap.events || []).filter((e) => e.name === "hold_full" && snap.tick - e.tick < 120).pop();
+  if (full && full.data) text(`Giỏ không đủ chỗ: cần ${full.data.required}, còn ${full.data.free}`, w / 2, 112, { size: 18, align: "center", color: "#ff8a80" });
   const need = needList();
   if (need) text("🧺 Cần lấy: " + need, 14, 76, { size: 18, color: "#ffd180" });
   if (snap.day_plan) text(planText() + (snap.demo ? "   (demo: tối Má Tư mua thêm đủ nguyên liệu)" : ""), 14, 100, { size: 17, color: "#a5d6a7" });

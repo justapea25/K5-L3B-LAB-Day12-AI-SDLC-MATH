@@ -12,6 +12,14 @@
     "net"
   ],
   "tuning": {
+    "skills": {
+      "enabled": false,
+      "net_radius": 4.0,
+      "net_max_schools": 3,
+      "net_extra_oxygen_ticks": 1,
+      "sprint_speed_mult": 1.6,
+      "sprint_extra_oxygen_ticks": 1
+    },
     "freshness": {
       "initial": 100,
       "gather_decay_per_s": 0.5,
