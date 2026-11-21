@@ -118,11 +118,11 @@ class Day(unittest.TestCase):
         self.assertEqual((end["reason"], end["days_completed"]), ("days_complete", 2))
 
     def test_buy_failed(self):
-        inp = frames({"tick": 0, "interact": True}, {"tick": 10802, "buy": "hp"}, {"tick": 10803, "buy": "net"})
+        inp = frames({"tick": 0, "interact": True}, {"tick": 10802, "buy": "hp"}, {"tick": 10803, "buy": "weapon"})
         with Workdir() as w:
             rows = run(w, "day", 10805, {"gather": {"random_fish": False}}, inp)
         self.assertEqual([e["data"] for e in events(rows, "buy_failed")],
-                         [{"action": "hp", "reason": "funds"}, {"action": "net", "reason": "unknown"}])
+                         [{"action": "hp", "reason": "funds"}, {"action": "weapon", "reason": "unknown"}])  # weapon chưa bật
 
     def test_mot_ngay_khong_pause_22200_tick(self):
         with Workdir() as w:

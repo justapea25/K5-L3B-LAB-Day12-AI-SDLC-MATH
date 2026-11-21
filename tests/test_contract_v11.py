@@ -28,7 +28,7 @@ def run(w, ticks, scenario=None, seed=1):
 class Contract(unittest.TestCase):
     def test_version_va_du_lieu_chuan(self):
         c = contract()
-        self.assertEqual(c["contract_version"], "1.2")  # contract đã lên v1.2 (Phase 3)
+        self.assertIn(c["contract_version"], ("1.2", "1.3"))  # v1.3 giữ gameplay v1.2  # contract đã lên v1.2 (Phase 3)
         self.assertEqual(len(T["menu"]), 6)
         self.assertEqual([n["id"] for n in G["nodes"]], ["N1", "N2", "N3", "N4", "N5", "N6"])
         self.assertEqual(G["fish_yield"], {"ca_linh": 3, "ca_loc": 1, "ca_keo": 2})

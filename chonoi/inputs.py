@@ -12,7 +12,7 @@ from .errors import BadInput
 
 BUTTONS_V10 = ("interact", "catch")
 # v1.1: pause (mọi mode), shop_done (Shop), attack/photo (gather, khi bật mở rộng; tắt thì bỏ qua)
-BUTTONS_V11 = ("interact", "catch", "pause", "shop_done", "attack", "photo")
+BUTTONS_V11 = ("interact", "catch", "pause", "shop_done", "attack", "photo", "net", "sprint")
 
 
 class InputState:

@@ -102,10 +102,10 @@ class Session(PauseMixin):
             write_inventory(inventory_out, self.sim.inventory_items())
 
 
-def make_session(mode, tuning, scenario, seed, inventory=None, days=1):
+def make_session(mode, tuning, scenario, seed, inventory=None, days=1, pantry=False):
     if mode == "day":
         from .day import DaySession
-        return DaySession(tuning, scenario, seed, days)
+        return DaySession(tuning, scenario, seed, days, pantry=pantry)
     return Session(mode, tuning, scenario, seed, inventory)
 
 

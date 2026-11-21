@@ -155,6 +155,19 @@ def _validate_day(t):
             _int_between(f"shop.upgrades.{uid}.price", lv.get("price"), 1, 1_000_000)
 
 
+def _validate_skills(sk):
+    """Khối `skills` (sáng tạo của nhóm, tắt mặc định) là tùy chọn; có thì phải hợp lệ."""
+    if sk is None:
+        return
+    if not isinstance(sk, dict) or not isinstance(sk.get("enabled"), bool):
+        raise BadInput("tuning.skills phải là object có enabled (boolean)")
+    _between("skills.net_radius", sk.get("net_radius"), 0.5, 20)
+    _int_between("skills.net_max_schools", sk.get("net_max_schools"), 1, 12)
+    _int_between("skills.net_extra_oxygen_ticks", sk.get("net_extra_oxygen_ticks"), 0, 10)
+    _between("skills.sprint_speed_mult", sk.get("sprint_speed_mult"), 1, 3)
+    _int_between("skills.sprint_extra_oxygen_ticks", sk.get("sprint_extra_oxygen_ticks"), 0, 10)
+
+
 def validate_tuning(t, exts=()):
     if not isinstance(t, dict):
         raise BadInput("thiếu khối tuning")
@@ -163,6 +176,7 @@ def validate_tuning(t, exts=()):
         raise BadInput("tuning phải có gather, quan, menu")
     _validate_gather(g)
     _validate_day(t)
+    _validate_skills(t.get("skills"))
     fr = t.get("freshness")
     if not isinstance(fr, dict) or set(fr) != {"initial", "gather_decay_per_s", "quan_decay_per_s", "spoiled_below"}:
         raise BadInput("tuning.freshness phải có initial, gather_decay_per_s, quan_decay_per_s, spoiled_below")

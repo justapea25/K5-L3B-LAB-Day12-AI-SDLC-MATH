@@ -17,7 +17,7 @@ import math
 
 from .. import inventory as inv
 from ..ids import id_key
-from .quan_customers import remove_customer
+from .quan_customers import remove_customer, reserve_for
 
 TICK = 60
 
@@ -36,10 +36,27 @@ def tick_service(sim, events):
                 events.append(("dish_ready", {"stove_id": s["id"], "order_id": s["dish"]["order_id"],
                                           "dish_id": s["dish"]["dish_id"]}))
         elif s["state"] == "ready":
-            s["ready_ticks"] += 1  # TODO(burn): khi enabled(tuning, "burn"), ready_ticks > burn_s·60 -> dish_burnt
+            s["ready_ticks"] += 1
+            if sim.burn_ticks is not None and s["ready_ticks"] > sim.burn_ticks:  # đúng burn_ticks vẫn bưng được
+                _burn(sim, s, events)
     for c in sim.customers:
         if c["state"] == "eating":
             c["eat_ticks_left"] = max(0, c["eat_ticks_left"] - 1)
+
+
+def _burn(sim, s, events):
+    """Mở rộng burn: bỏ món, nguyên liệu mất, bếp rảnh ngay; thử giữ lại ngay cho đơn
+    (đủ -> reserved, thiếu -> unfulfillable, khách tiếp tục chờ tới hết kiên nhẫn)."""
+    dish = s["dish"]
+    _reset_stove(s)
+    c = next((c for c in sim.customers if c["id"] == dish["order_id"]), None)
+    status = None
+    if c is not None:
+        got = reserve_for(sim, c["dish_id"], skip=c)
+        c["reserved"], c["order_status"] = (got, "reserved") if got is not None else ([], "unfulfillable")
+        status = c["order_status"]
+    events.append(("dish_burnt", {"stove_id": s["id"], "order_id": dish["order_id"], "dish_id": dish["dish_id"],
+                                  "order_status": status}))
 
 
 def _reset_stove(s):

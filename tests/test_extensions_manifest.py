@@ -11,6 +11,9 @@ from chonoi.errors import BadInput
 
 with open(DEFAULT_PATH, encoding="utf-8") as f:
     BASE = json.load(f)
+# nền "tắt hết mở rộng" để kiểm từng mục độc lập với manifest đang dùng
+BASE["extensions"] = []
+BASE["tuning"]["quan"]["burn_s"] = None
 
 
 def load_with(**changes):
@@ -27,10 +30,12 @@ def load_with(**changes):
 
 
 class Manifest(unittest.TestCase):
-    def test_mac_dinh_khong_bat_mo_rong(self):
+    def test_manifest_dang_bat_burn_va_net(self):
         t = load_contract()["tuning"]
-        self.assertEqual(t["extensions"], [])
-        self.assertFalse(enabled(t, "burn"))
+        self.assertEqual(t["extensions"], ["burn", "net"])
+        self.assertTrue(enabled(t, "burn") and enabled(t, "net"))
+        self.assertFalse(enabled(t, "weapon"))
+        self.assertEqual(t["quan"]["burn_s"], 20)
 
     def test_ma_la_hoac_trung_bi_tu_choi(self):
         for exts in (["bay"], ["net", "net"], "net"):

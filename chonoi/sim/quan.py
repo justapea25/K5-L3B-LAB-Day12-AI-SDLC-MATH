@@ -25,6 +25,9 @@ class QuanSim:
         t = tuning["quan"]
         self.t = t
         self.menu = tuning["menu"]
+        self.extensions = tuple(tuning.get("extensions", ()))
+        burn_s = t.get("burn_s")
+        self.burn_ticks = int(round(burn_s * 60)) if "burn" in self.extensions and burn_s is not None else None
         self.rng = streams
         self.ids = ids
         p = scenario.get("player", {})

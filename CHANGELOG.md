@@ -1,5 +1,23 @@
 # Changelog
-## Unreleased
+
+## [1.0.0] — Phase 4 (Test Contract v1.3)
+### Added
+- `bench_cmd` (`python3 -m chonoi.bench`): benchmark có render 1280×720, cảnh sáng lõi seed 42, làm nóng 3 s, xuất `bench.json`
+  {avg_fps, p1_low_fps, frames, measured_s, load_ms}. Kết quả trên máy dev: `docs/proof/phase-4/bench.json`.
+- `soak_cmd` (`python3 -m chonoi.soak`): N Ngày trong một tiến trình bằng bot tất định, kế hoạch D1–D5 lặp; `soak.json`
+  {days, days_completed, crashes, results[], duration_s}. 10 Ngày: 10/10, 0 crash (`docs/proof/phase-4/soak.json`).
+- Cảnh báo dễ nhận biết: 🐊 Thủy quái! (+ viền tím), 🫧 Oxy sắp hết! / Hết hơi!, 😠 Khách sắp giận! (kèm số bàn).
+- Chế độ tương phản cao (phím H hoặc `?contrast=high`, nhớ lựa chọn).
+- HUD quán: khách kế tiếp, bàn trống, món nấu được từ kho, giải thích khi khách bỏ về vì `no_dish`; HUD sáng: "Cần lấy" theo kế hoạch.
+- Shop: phím 3 mua Vợt hút cá. README chạy được trong 3 lệnh; LICENSE.
+### Changed
+- `contract_version: "1.3"`, khai `bench_cmd`, `soak_cmd`; `run_cmd` chạy `--mode day`. Gameplay/kho/JSONL giữ v1.2.
+
+## Phase 1 (Test Contract v1.0)
+- Lõi gather (oxy, ngạt, Máu, ngất, giỏ LIFO, hái, bắt cá, cập bến), quán (khách, giữ chỗ, bếp, bưng, trả tiền, boa, uy tín),
+  bàn giao kho gather → quan qua file.
+
+## Unreleased (lịch sử chi tiết Phase 2–3)
 
 ### ⚠️ Breaking change — Contract v1.2 (Phase 3, "Mùa Nước Nổi")
 - **Kho đếm → kho cá thể.** File kho, `gather.hold`, `quan.stock`, snapshot `hold`/`stock` (quán và Shop):

@@ -1,12 +1,25 @@
 {
-  "contract_version": "1.2",
+  "contract_version": "1.3",
   "team": "math",
   "team_size": 6,
   "build_cmd": "true",
-  "run_cmd": "python3 -m chonoi.live --mode gather",
+  "run_cmd": "python3 -m chonoi.live --mode day",
   "headless_cmd": "python3 -m chonoi.headless",
-  "extensions": [],
+  "bench_cmd": "python3 -m chonoi.bench",
+  "soak_cmd": "python3 -m chonoi.soak",
+  "extensions": [
+    "burn",
+    "net"
+  ],
   "tuning": {
+    "skills": {
+      "enabled": false,
+      "net_radius": 4.0,
+      "net_max_schools": 3,
+      "net_extra_oxygen_ticks": 1,
+      "sprint_speed_mult": 1.6,
+      "sprint_extra_oxygen_ticks": 1
+    },
     "freshness": {
       "initial": 100,
       "gather_decay_per_s": 0.5,
@@ -284,7 +297,7 @@
       "customer_interval_s": 15,
       "patience_s": 60,
       "eat_s": 10,
-      "burn_s": null,
+      "burn_s": 20,
       "carry_limit": 1,
       "tip_rate": 0.2,
       "tip_min_patience_ratio": 0.5,

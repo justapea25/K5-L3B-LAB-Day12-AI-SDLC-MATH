@@ -24,9 +24,11 @@ from .sim.quan import QuanSim
 class DaySession(PauseMixin):
     mode = "day"
 
-    def __init__(self, tuning, scenario, seed, days=1):
+    def __init__(self, tuning, scenario, seed, days=1, pantry=False):
         self.tuning = tuning
         self.days_total = days
+        # chỉ cửa sổ chơi --demo: tối nào Má Tư cũng mua thêm đủ nguyên liệu theo kế hoạch (headless luôn tắt)
+        self.pantry = pantry
         self.streams = Streams(seed)  # một bộ RNG cho cả lượt: các Ngày không lặp lại nhau
         d = scenario.get("day", {})
         self.gather_tpl = scenario.get("gather", {})
@@ -54,7 +56,9 @@ class DaySession(PauseMixin):
 
     # --- dựng pha -------------------------------------------------------------
     def _plan(self):
-        return self.plans[self.day]
+        """Kế hoạch D1–D5; soak chạy quá 5 Ngày thì lặp lại (Ngày 6 = D1...)."""
+        n = len(self.plans)
+        return self.plans[(self.day - 1) % n + 1]
 
     def _start_day(self, out):
         out.append(("gather", "day_start", {}))
@@ -79,6 +83,9 @@ class DaySession(PauseMixin):
         out.append(("gather", "phase_start", {}))
 
     def _start_quan(self, items, out):
+        if self.pantry:  # demo: thêm hàng chợ tươi 100, id mới, sau hàng mang về
+            for kind, n in sorted(self._plan()["ingredients"].items()):
+                items = items + [inv.new_item(self.item_ids, kind, 100) for _ in range(n)]
         t = copy.deepcopy(self.tuning)
         dishes = self._plan()["dishes"]
         t["menu"] = {k: v for k, v in t["menu"].items() if k in dishes}  # lọc menu theo kế hoạch trước
