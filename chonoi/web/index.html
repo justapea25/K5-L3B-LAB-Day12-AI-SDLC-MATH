@@ -7,10 +7,63 @@
 <style>
   html, body { margin: 0; height: 100%; background: #10161c; color: #e8eef2; font: 14px/1.4 system-ui, sans-serif; overflow: hidden; }
   canvas { display: block; width: 100vw; height: 100vh; }
+  /* Sáng tạo: giao diện bếp "tiệm nhỏ" (chỉ ở cửa sổ chơi) */
+  [hidden] { display: none !important; }
+  #kitchen { position: fixed; inset: 0; display: grid; place-items: center; background: rgba(6,12,16,.5); padding: 16px; z-index: 5; }
+  #kitchen .kcard { background: #3a2a20; border: 1px solid #6b4a33; border-radius: 16px; padding: 16px; width: min(760px, 100%); max-height: 92vh; overflow: auto; box-shadow: 0 10px 0 rgba(0,0,0,.35); color: #f3eadb; }
+  #kitchen .khead { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; margin-bottom: 10px; }
+  #kitchen .slip { flex: 1 1 240px; min-width: 0; background: #f4e6c6; color: #2b1d14; border-radius: 6px 10px 8px 6px; padding: 6px 10px; font-size: 17px; line-height: 1.25; }
+  #kitchen .slip small { display: block; font-size: 13.5px; color: #5b4330; }
+  #kitchen .slip small.ok { color: #3f6b2e; }
+  #kitchen .clock { font-size: 22px; font-variant-numeric: tabular-nums; }
+  #kitchen .pat { flex: 1 1 100%; height: 7px; background: rgba(0,0,0,.4); border-radius: 4px; overflow: hidden; }
+  #kitchen .pat i { display: block; height: 100%; background: #86c46f; }
+  #kitchen .pat.low i { background: #e2593b; }
+  #kitchen .steps { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 0 0 10px; }
+  #kitchen .steps li { font-size: 12.5px; padding: 3px 9px; border-radius: 999px; background: rgba(0,0,0,.28); color: #b8c4bf; }
+  #kitchen .steps li.on { background: #f2a541; color: #2b1d14; font-weight: 700; }
+  #kitchen .steps li.done { color: #86c46f; }
+  #kitchen .kbody { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 14px; }
+  @media (max-width: 580px) { #kitchen .kbody { grid-template-columns: 1fr; } }
+  #kitchen .pot { background: rgba(0,0,0,.25); border-radius: 12px; padding: 10px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+  #kitchen .vessel { width: 124px; height: 90px; border-radius: 0 0 62px 62px; background: #2a1a12; border: 3px solid #7a4a33; display: flex; flex-wrap: wrap; align-content: flex-end; justify-content: center; gap: 4px; padding: 10px; }
+  #kitchen .vessel i { width: 17px; height: 17px; border-radius: 50%; }
+  #kitchen .hint { font-size: 14px; color: #c9d3cf; margin: 0 0 10px; }
+  #kitchen .hint b { color: #fff3d6; }
+  #kitchen .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  #kitchen button { font: inherit; color: inherit; cursor: pointer; }
+  #kitchen .tile { position: relative; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 14px 6px 10px; border-radius: 12px; background: #4b3729; border: 2px solid #6b4a33; min-width: 0; }
+  #kitchen .tile:hover { border-color: #f2a541; }
+  #kitchen .tile.need { border-color: #86c46f; background: rgba(134,196,111,.14); }
+  #kitchen .tile.done { border-color: rgba(134,196,111,.5); }
+  #kitchen .tile.extra { opacity: .5; }
+  #kitchen .tile:disabled { opacity: .3; cursor: not-allowed; }
+  #kitchen .tile .dot { width: 36px; height: 36px; border-radius: 50%; box-shadow: inset 0 -5px 0 rgba(0,0,0,.25); }
+  #kitchen .tile kbd { position: absolute; top: 4px; left: 7px; font: 11px system-ui; color: #b8c4bf; }
+  #kitchen .tile .badge { position: absolute; top: 4px; right: 7px; font-size: 11.5px; font-weight: 700; color: #86c46f; }
+  #kitchen .tile small { color: #b8c4bf; font-size: 11.5px; }
+  #kitchen .need { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+  #kitchen .need span { font-size: 13px; padding: 2px 8px; border-radius: 6px; background: rgba(0,0,0,.25); }
+  #kitchen .need span.ok { color: #86c46f; }
+  #kitchen .heat { display: flex; gap: 14px; }
+  #kitchen .tube { position: relative; width: 46px; height: 150px; border-radius: 10px; background: rgba(0,0,0,.4); border: 2px solid #6b4a33; overflow: hidden; flex: none; }
+  #kitchen .band { position: absolute; left: 0; right: 0; background: rgba(134,196,111,.3); border-top: 2px dashed #86c46f; border-bottom: 2px dashed #86c46f; }
+  #kitchen .fill { position: absolute; left: 0; right: 0; bottom: 0; background: linear-gradient(0deg, #e2593b, #f2a541); }
+  #kitchen .hold { flex: 1; border-radius: 14px; border: 2px solid #f2a541; background: rgba(242,165,65,.12); font-size: 20px; touch-action: none; user-select: none; }
+  #kitchen .season { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-bottom: 10px; }
+  #kitchen .counter { background: rgba(0,0,0,.25); border-radius: 10px; padding: 8px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  #kitchen .counter b { font-size: 22px; }
+  #kitchen .btn { background: #4b3729; border: 1px solid #6b4a33; border-radius: 10px; padding: 8px 12px; }
+  #kitchen .btn.primary { background: #f2a541; color: #2b1d14; border-color: #f2a541; font-weight: 700; }
+  #kitchen .row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; align-items: center; }
+  #kitchen .msg { min-height: 20px; font-size: 14px; margin-top: 8px; color: #f2a541; }
+  #kitchen .msg.bad { color: #ff8a65; }
+  #kitchen .keys { font-size: 12px; color: #9fb3c0; margin-left: auto; }
 </style>
 </head>
 <body>
 <canvas id="c"></canvas>
+<div id="kitchen" hidden></div>
 <script>
 "use strict";
 /*
@@ -141,6 +194,7 @@ function keyName(e) {
 }
 addEventListener("keydown", (e) => {
   audioUnlock();
+  if (cozyKeyDown(e)) return;   // giao diện bếp "tiệm nhỏ" (sáng tạo, chỉ cửa sổ chơi)
   const k = keyName(e);
   if (e.repeat) { if (k === " " || k.startsWith("arrow")) e.preventDefault(); return; }
   if (MOVE_KEYS[k]) { down.add(MOVE_KEYS[k]); e.preventDefault(); }
@@ -158,6 +212,7 @@ addEventListener("keydown", (e) => {
   pushInput();
 });
 addEventListener("keyup", (e) => {
+  if (cozyKeyUp(e)) return;
   const k = keyName(e);
   if (MOVE_KEYS[k]) down.delete(MOVE_KEYS[k]);
   else if (k === "e") down.delete("interact");
@@ -625,18 +680,26 @@ function drawQuan(w, h) {
     ctx.fillStyle = c.order_status === "unfulfillable" ? "#c62828" : c.state === "eating" ? "#2e7d32" : "rgba(60,35,20,.85)";
     rrect(tx - sw / 2, ty + 0.95 * s, sw, 22, 8); ctx.fill();
     text(st, tx, ty + 0.95 * s + 16, { size: 13, align: "center", color: "#fff" });
-    bubbles.push({ x: cx, y: cy - 0.75 * s, msg: (DISH_EMOJI[c.dish_id] || "🍽") + " " + (DISH_NAME[c.dish_id] || c.dish_id), bad: c.order_status === "unfulfillable" });
+    bubbles.push({ x: cx, y: cy - 0.75 * s, msg: COZY ? cozyBubble(c) : (DISH_EMOJI[c.dish_id] || "🍽") + " " + (DISH_NAME[c.dish_id] || c.dish_id), bad: c.order_status === "unfulfillable" });
   });
   fireflies(0, oy - 30, w, 26);
   fireflies(0, sy(0) + 10, w, 30);
   drawPopups((q) => [sx(q[0]), sy(q[1])]);
   // bong bóng thoại vẽ sau cùng để không bị bàn khác che
   bubbles.forEach((b) => {
-    ctx.font = "14px system-ui, sans-serif"; const bw = ctx.measureText(b.msg).width + 18;
+    // nhiều dòng ("\n") và tự ngắt theo bề rộng tối đa để bong bóng hai bàn cạnh nhau không đè nhau
+    ctx.font = "14px system-ui, sans-serif";
+    const maxW = Math.max(140, 3.6 * s), lines = [];
+    b.msg.split("\n").forEach((para) => {
+      let cur = "";
+      para.split(" ").forEach((wd) => { const t = cur ? cur + " " + wd : wd; if (cur && ctx.measureText(t).width > maxW) { lines.push(cur); cur = wd; } else cur = t; });
+      if (cur) lines.push(cur);
+    });
+    const bw = Math.max(...lines.map((l) => ctx.measureText(l).width)) + 18, bh = lines.length * 18 + 8;
     ctx.fillStyle = "#fffdf5"; ctx.strokeStyle = b.bad ? "#c62828" : "#8d6e63"; ctx.lineWidth = 2;
-    rrect(b.x - bw / 2, b.y - 32, bw, 26, 10); ctx.fill(); ctx.stroke();
+    rrect(b.x - bw / 2, b.y - 6 - bh, bw, bh, 10); ctx.fill(); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(b.x - 6, b.y - 6); ctx.lineTo(b.x, b.y + 2); ctx.lineTo(b.x + 6, b.y - 6); ctx.fill(); ctx.lineWidth = 1;
-    text(b.msg, b.x, b.y - 14, { size: 14, align: "center", color: "#3e2723" });
+    lines.forEach((l, i) => text(l, b.x, b.y - bh + 12 + i * 18, { size: 14, align: "center", color: "#3e2723" }));
   });
   // chỉ dẫn từng bước + vòng sáng ở chỗ cần tới
   const step = quanStep();
@@ -763,7 +826,7 @@ function quanStep() {
   if (ready && !snap.hand) return { target: ready, text: `② Món chín ở Bếp ${ready.id} — tới bếp bấm E để lấy` };
   const waiting = cust.filter((c) => c.state === "waiting" && c.order_status === "reserved").sort((a, b) => a.order_tick - b.order_tick);
   const idle = stoves.find((st) => st.state === "idle");
-  if (waiting.length && idle) return { target: idle, text: `① Tới Bếp ${idle.id} bấm E để nấu ${dn(waiting[0].dish_id)} cho Bàn ${waiting[0].table_id}` };
+  if (waiting.length && idle) return { target: idle, text: `① Tới Bếp ${idle.id} bấm E ${COZY ? "mở bếp, pha" : "để nấu"} ${dn(waiting[0].dish_id)} cho Bàn ${waiting[0].table_id}` };
   const cooking = stoves.find((st) => st.state === "cooking");
   if (cooking) return { target: cooking, text: `Đang nấu ở Bếp ${cooking.id}… còn ${Math.ceil(cooking.cook_ticks_left / 60)}s` };
   if (cust.some((c) => c.state === "eating")) return { text: "Khách đang ăn, ăn xong sẽ tự trả tiền và boa" };
@@ -927,8 +990,237 @@ function fireflies(x0, y0, w0, h0) {
   }
 }
 
+// ---------- Sáng tạo của nhóm: quán "tiệm nhỏ" — khách quen có tên + pha chế 4 bước (chỉ giao diện) ----------
+// Tắt bằng ?tiemnho=off. KHÔNG đổi luật: E ở bếp rảnh mở giao diện bếp; làm xong 4 bước mới gửi interact,
+// sim vẫn tự nhận đơn reserved cũ nhất (AC-P1-17). Nêm ớt/đường và ♥ khách quen chỉ đổi câu thoại, không đổi tiền.
+const COZY = !/tiemnho=off/.test(location.search);
+const TOOLS = { rom: ["Bó rơm", "Giữ lửa rơm"], vi: ["Vỉ than", "Quạt than"], tho: ["Thố trộn", "Trộn đều tay"],
+  canh: ["Nồi canh", "Chế nước dùng"], lau: ["Nồi lẩu", "Chế nước lẩu"] };
+const DISH_TOOL = { ca_loc_nuong_trui: ["rom", .62], goi_bong_sung: ["tho", .44], lau_ca_linh_dien_dien: ["lau", .70],
+  canh_chua_ca_loc: ["canh", .56], ca_keo_nuong: ["vi", .50], lau_mam: ["lau", .76] };   // [dụng cụ, đáy vạch lửa]
+const HEAT_S = 2.2, BAND = .14, FRIEND_AT = 3;
+const REGS = [
+  { id: "sau", name: "Chú Sáu xe lôi", fav: "ca_loc_nuong_trui", req: { ot: 3, duong: 0 }, greet: "Cá lóc trui cho chú, cay xé lưỡi nghen!",
+    friend: "Như cũ nghen, ớt ba trái!", happy: "Đã! Cay vầy mới gọi là trui.", wrong: "Ớt đâu con? Lạt nhách à.", left: "Thôi chú chạy cuốc khách đây…" },
+  { id: "ba", name: "Cô Ba bánh bò", fav: "goi_bong_sung", req: { ot: 1, duong: 2 }, greet: "Dĩa gỏi bông súng, ngọt ngọt chút xíu nha.",
+    friend: "Gỏi của cô đâu, con nhớ hông?", happy: "Ngon y như má cô làm.", wrong: "Hơi lệch vị rồi con ơi.", left: "Cô còn phải đi giao bánh…" },
+  { id: "tu", name: "Anh Tư ghe chai", fav: "lau_mam", req: { ot: 2, duong: 1 }, greet: "Nồi lẩu mắm cho anh em trên ghe!",
+    friend: "Lẩu mắm như mọi bữa nha em.", happy: "Mùi mắm này là tới bến luôn!", wrong: "Nêm vầy anh em chê đó.", left: "Ghe nhổ neo rồi, để bữa khác." },
+  { id: "na", name: "Bé Na", fav: "ca_keo_nuong", req: { ot: 0, duong: 1 }, greet: "Con muốn cá kèo nướng, không cay đâu!",
+    friend: "Chị ơi, cá kèo của con nè!", happy: "Ngon quá trời luôn!", wrong: "Cay quá… con hông ăn được.", left: "Má kêu con về rồi…" },
+  { id: "nam", name: "Bà Năm bán bông", fav: "canh_chua_ca_loc", req: { ot: 0, duong: 2 }, greet: "Tô canh chua, nhớ để ngọt nghe con.",
+    friend: "Canh chua của bà, như cũ.", happy: "Chua ngọt vừa miệng, bà khen.", wrong: "Bà ăn hông nổi cay đâu con.", left: "Bà bán bông tiếp đây." },
+  { id: "hai", name: "Thầy Hai", fav: "lau_ca_linh_dien_dien", req: { ot: 1, duong: 0 }, greet: "Mùa nước nổi, phải có lẩu cá linh.",
+    friend: "Lẩu cá linh, như lệ thường nhé.", happy: "Đúng vị mùa nước nổi.", wrong: "Chưa tới, em nêm lại lần sau.", left: "Thầy tới giờ dạy rồi." },
+];
+const STRANGERS = ["Khách du lịch", "Chị bán trái cây", "Anh thợ hồ", "Ông khách Sài Gòn", "Cặp đôi đi ghe", "Chú câu cá"];
+let hearts = {};
+try { hearts = JSON.parse(localStorage.getItem("chonoi-khachquen") || "{}") || {}; } catch (e) { hearts = {}; }
+function saveHearts() { try { localStorage.setItem("chonoi-khachquen", JSON.stringify(hearts)); } catch (e) {} }
+const isFriend = (p) => !p.stranger && (hearts[p.id] || 0) >= FRIEND_AT;
+const reqText = (r) => (r.ot ? "ớt ×" + r.ot : "không ớt") + " · " + (r.duong ? "đường ×" + r.duong : "không đường");
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const cozy = { who: {}, say: {}, season: {}, lastTick: -1 };
+let K = null, kLast = 0;
+const kEl = document.getElementById("kitchen");
+
+function cozyPersona(c) {
+  // Gán nhân vật cho khách theo món đã gọi (món vẫn do sim chọn đều theo seed); cố định suốt lượt ngồi.
+  if (cozy.who[c.id]) return cozy.who[c.id];
+  const seated = new Set((snap.customers || []).map((x) => cozy.who[x.id] && cozy.who[x.id].id).filter(Boolean));
+  const n = Number((c.id.match(/\d+$/) || ["0"])[0]);
+  let p = REGS.find((r) => r.fav === c.dish_id && !seated.has(r.id));
+  if (!p || n % 5 === 4) {
+    const name = STRANGERS[n % STRANGERS.length];
+    p = { id: "x" + c.id, name, stranger: true, req: { ot: n % 4, duong: (n >> 1) % 3 },
+      greet: "Cho một phần " + (DISH_NAME[c.dish_id] || c.dish_id).toLowerCase() + " nha.", happy: "Ngon, lần sau ghé nữa.",
+      wrong: "Nêm chưa đúng ý lắm.", left: "Chờ lâu quá, thôi đi chỗ khác." };
+  }
+  return (cozy.who[c.id] = p);
+}
+function cozySay(id, msg) { cozy.say[id] = { msg, until: performance.now() + 4000 }; }
+function cozyBubble(c) {
+  const p = cozyPersona(c), s = cozy.say[c.id];
+  const tag = p.stranger ? "" : " " + "♥".repeat(hearts[p.id] || 0);
+  if (s && performance.now() < s.until) return p.name + tag + "\n" + s.msg;
+  const r = p.req;
+  return p.name + tag + "\n" + (DISH_EMOJI[c.dish_id] || "🍽") + " " + (DISH_NAME[c.dish_id] || c.dish_id) +
+    (c.state === "waiting" ? "\nớt " + r.ot + " · đường " + r.duong : "");
+}
+function cozyEvents() {
+  if (!COZY || !snap || !snap.events) return;
+  if (snap.tick < cozy.lastTick) { cozy.lastTick = -1; cozy.who = {}; cozy.say = {}; cozy.season = {}; }   // vừa chơi lại
+  snap.events.forEach((e) => {
+    if (e.tick <= cozy.lastTick) return;
+    const d = e.data || {}, c = (snap.customers || []).find((x) => x.id === d.order_id), p = cozy.who[d.order_id];
+    if (e.name === "customer_arrived" && c) { const q = cozyPersona(c); cozySay(c.id, isFriend(q) ? q.friend : q.greet); }
+    else if (e.name === "served" && p) cozySay(d.order_id, cozy.season[d.order_id] === false ? p.wrong : p.happy);
+    else if (e.name === "paid" && p && !p.stranger && cozy.season[d.order_id] !== false && d.tip > 0) { hearts[p.id] = Math.min(5, (hearts[p.id] || 0) + 1); saveHearts(); }
+    else if (e.name === "customer_left" && d.reason === "patience" && p) {
+      popups.push({ kind: "table", id: d.table_id, msg: "😠 " + p.left, at: performance.now() });
+      if (!p.stranger) { hearts[p.id] = Math.max(0, (hearts[p.id] || 0) - 1); saveHearts(); }
+    }
+  });
+  if (snap.events.length) cozy.lastTick = Math.max(cozy.lastTick, ...snap.events.map((e) => e.tick));
+}
+function cozyNearest() {
+  // cùng luật chọn của sim: trong interact_radius, gần nhất, bếp trước bàn, rồi id
+  const p = snap && snap.player; if (!p) return null;
+  const r = (snap.meta || {}).interact_radius || 1.5, c = [];
+  (snap.stoves || []).forEach((o) => c.push([Math.hypot(o.pos[0] - p.pos[0], o.pos[1] - p.pos[1]), 0, o.id, "stove", o]));
+  (snap.tables || []).forEach((o) => c.push([Math.hypot(o.pos[0] - p.pos[0], o.pos[1] - p.pos[1]), 1, o.id, "table", o]));
+  return c.filter((x) => x[0] <= r).sort((a, b) => a[0] - b[0] || a[1] - b[1] || a[2].localeCompare(b[2], undefined, { numeric: true }))[0] || null;
+}
+function cozyOldest() {
+  // đơn bếp sẽ nhận: reserved còn giữ nguyên liệu, cũ nhất theo (order_tick, id bàn) — như quan_service._start_cooking
+  return (snap.customers || []).filter((c) => c.state === "waiting" && c.order_status === "reserved" && (c.reserved || []).length)
+    .sort((a, b) => a.order_tick - b.order_tick || a.table_id.localeCompare(b.table_id, undefined, { numeric: true }))[0] || null;
+}
+function stockCount() {
+  const n = {}; (snap.stock || []).forEach((it) => { if (it.fresh === undefined || it.fresh >= 30) n[it.kind] = (n[it.kind] || 0) + 1; }); return n;
+}
+function kOpen(c, stove) {
+  ["u", "d", "l", "r", "interact"].forEach((x) => down.delete(x)); pushInput();   // đứng yên ở bếp
+  K = { orderId: c.id, stoveId: stove.id, dish: c.dish_id, stage: "tool", tool: null, added: {}, heat: 0, holding: false, ot: 0, duong: 0, msg: "", bad: false };
+  kRender();
+}
+function kClose() { K = null; kRender(); }
+function kSpill(msg) { Object.assign(K, { stage: "tool", tool: null, added: {}, heat: 0, holding: false, ot: 0, duong: 0, msg, bad: true }); kRender(true); }
+function kAct(act, arg) {
+  if (!K || !snap || snap.state === "paused") return;
+  const recipe = ((snap.menu || {})[K.dish] || {}).recipe || {}, tool = (DISH_TOOL[K.dish] || ["lau"])[0];
+  K.msg = ""; K.bad = false;
+  if (act === "close") return kClose();
+  if (act === "tool") {
+    if (arg !== tool) { K.msg = TOOLS[arg][0] + " không dùng cho món này."; K.bad = true; return kRender(true); }
+    K.tool = arg; K.stage = "ing";
+  } else if (act === "ing") {
+    const have = K.added[arg] || 0;
+    if (have + 1 > (recipe[arg] || 0)) return kSpill("Bỏ nhầm " + (KIND_NAME[arg] || arg) + "! Đổ bỏ, làm lại từ đầu.");
+    K.added[arg] = have + 1;
+    if (Object.entries(recipe).every(([k, n]) => (K.added[k] || 0) === n)) K.stage = "heat";
+  } else if (act === "ot" || act === "duong") K[act] = Math.min(act === "ot" ? 3 : 2, K[act] + 1);
+  else if (act === "reseason") { K.ot = 0; K.duong = 0; }
+  else if (act === "fire") return kFire();
+  kRender();
+}
+function kFire() {
+  const n = cozyNearest(), st = n && n[3] === "stove" ? n[4] : null;
+  const c = (snap.customers || []).find((x) => x.id === K.orderId);
+  if (!c || c.order_status !== "reserved") return kClose();
+  if (!st || st.state !== "idle") { K.msg = "Bếp này không còn rảnh."; K.bad = true; return kRender(true); }
+  const p = cozyPersona(c);
+  cozy.season[c.id] = K.ot === p.req.ot && K.duong === p.req.duong;
+  kClose();
+  down.add("interact"); pushInput();                                   // giờ mới gửi E cho sim: bếp nhận đơn
+  setTimeout(() => { down.delete("interact"); pushInput(); }, 100);
+}
+function kHoldStart() { if (K && K.stage === "heat" && snap.state !== "paused") K.holding = true; }
+function kHoldEnd() {
+  if (!K || !K.holding) return;
+  K.holding = false;
+  const lo = (DISH_TOOL[K.dish] || [0, .6])[1];
+  if (K.heat < lo) { K.msg = "Chưa tới vạch, giữ thêm chút nữa."; kRender(); }
+  else if (K.heat <= lo + BAND) { K.stage = "season"; K.msg = "Vừa tới vạch!"; kRender(); }
+  else kSpill("Quá vạch! Đổ bỏ, làm lại từ đầu.");
+}
+function kRender(shake) {
+  if (!K || !snap) { kEl.hidden = true; kEl.innerHTML = ""; return; }
+  kEl.hidden = false;
+  const c = (snap.customers || []).find((x) => x.id === K.orderId), p = c ? cozyPersona(c) : null;
+  const recipe = ((snap.menu || {})[K.dish] || {}).recipe || {}, [tool, lo] = DISH_TOOL[K.dish] || ["lau", .6];
+  const dn = DISH_NAME[K.dish] || K.dish, idx = ["tool", "ing", "heat", "season"].indexOf(K.stage);
+  const labels = ["Dụng cụ", "Nguyên liệu", TOOLS[tool][1], "Nêm nếm"];
+  let body;
+  if (K.stage === "tool") {
+    body = `<p class="hint">Chọn dụng cụ cho món. <b>Ô viền xanh</b> là dụng cụ đúng.</p><div class="tiles">` +
+      Object.entries(TOOLS).map(([k, t], i) => `<button class="tile ${k === tool ? "need" : "extra"}" data-act="tool" data-arg="${k}"><kbd>${i + 1}</kbd>` +
+        (k === tool ? `<span class="badge">dùng cái này</span>` : "") + `<span class="dot" style="background:#7a4a33"></span><b>${t[0]}</b><small>${t[1]}</small></button>`).join("") + `</div>`;
+  } else if (K.stage === "ing") {
+    const stock = stockCount(), kinds = Object.keys(KIND_NAME);
+    body = `<p class="hint">Bấm từng ô để cho vào ${TOOLS[tool][0].toLowerCase()}. <b>Ô viền xanh</b> là thứ món cần; bỏ nhầm là đổ bỏ làm lại.</p>
+      <div class="need">${Object.entries(recipe).map(([k, n]) => `<span class="${(K.added[k] || 0) === n ? "ok" : ""}">${KIND_NAME[k] || k} ${K.added[k] || 0}/${n}</span>`).join("")}</div>
+      <div class="tiles">` + kinds.map((k, i) => {
+        const need = recipe[k] || 0, have = K.added[k] || 0, cls = need ? (have >= need ? "done" : "need") : "extra";
+        return `<button class="tile ${cls}" data-act="ing" data-arg="${k}"><kbd>${i + 1}</kbd>` +
+          (need ? `<span class="badge">${have >= need ? "✓" : "cần " + (need - have)}</span>` : "") +
+          `<span class="dot" style="background:${kc(k)}"></span><b>${KIND_NAME[k]}</b><small>kho ${stock[k] || 0}</small></button>`;
+      }).join("") + `</div>`;
+  } else if (K.stage === "heat") {
+    body = `<p class="hint">Giữ nút hoặc giữ <b>Space</b>, nhả khi lửa vào vùng xanh. Quá vạch là tràn.</p>
+      <div class="heat"><div class="tube"><div class="band" style="bottom:${lo * 100}%;height:${BAND * 100}%"></div><div class="fill" id="kFill" style="height:${K.heat * 100}%"></div></div>
+      <button class="hold" id="kHold">Giữ để ${TOOLS[tool][1].toLowerCase()}</button></div>`;
+  } else {
+    body = `<p class="hint">Khách dặn: <b>${p ? reqText(p.req) : "?"}</b>. Nêm đúng ý thì khách khen.</p>
+      <div class="season"><div class="counter"><span>Ớt</span><b>${K.ot}</b><button class="btn" data-act="ot">+ ớt</button></div>
+      <div class="counter"><span>Đường</span><b>${K.duong}</b><button class="btn" data-act="duong">+ đường</button></div></div>
+      <div class="row"><button class="btn" data-act="reseason">Nêm lại</button><button class="btn primary" data-act="fire">Bắc lên Bếp ${K.stoveId} (Enter)</button></div>`;
+  }
+  const dots = Object.entries(K.added).flatMap(([k, n]) => Array(n).fill(`<i style="background:${kc(k)}"></i>`)).join("");
+  kEl.innerHTML = `<div class="kcard" role="dialog" aria-label="Bếp ${K.stoveId}">
+    <div class="khead"><div class="slip">${DISH_EMOJI[K.dish] || "🍲"} ${esc(dn)} · ${p ? esc(p.name) : ""} (Bàn ${c ? c.table_id : "?"})
+      <small>${p ? reqText(p.req) : ""}</small><small class="ok">Nấu bằng: ${TOOLS[tool][0]} · Công thức: ${Object.entries(recipe).map(([k, n]) => n + " " + (KIND_NAME[k] || k)).join(" + ")}</small></div>
+      <div class="clock" id="kClock"></div><div class="pat" id="kPat"><i></i></div></div>
+    <ol class="steps">${labels.map((l, i) => `<li class="${i === idx ? "on" : i < idx ? "done" : ""}">${i + 1}. ${l}</li>`).join("")}</ol>
+    <div class="kbody"><div class="pot"><b>${K.tool ? TOOLS[K.tool][0] : "Chưa chọn dụng cụ"}</b><div class="vessel">${dots}</div>
+      <small>${K.stage === "season" ? "ớt " + K.ot + " · đường " + K.duong : ""}</small></div><div style="min-width:0">${body}</div></div>
+    <div class="msg ${K.bad ? "bad" : ""}">${esc(K.msg)}</div>
+    <div class="row"><button class="btn" data-act="close">Đóng bếp (Q)</button><span class="keys">Số 1–6 chọn ô · Space giữ lửa · P tạm dừng</span></div></div>`;
+  const hb = document.getElementById("kHold");
+  if (hb) {
+    hb.addEventListener("pointerdown", (e) => { e.preventDefault(); hb.setPointerCapture(e.pointerId); kHoldStart(); });
+    hb.addEventListener("pointerup", kHoldEnd); hb.addEventListener("pointercancel", kHoldEnd);
+  }
+  kLive();
+  if (shake && kEl.firstElementChild) kEl.firstElementChild.animate([{ transform: "translateX(-6px)" }, { transform: "translateX(6px)" }, { transform: "none" }], { duration: 300 });
+}
+function kLive() {
+  if (!K) return;
+  const c = (snap.customers || []).find((x) => x.id === K.orderId), full = ((snap.meta || {}).patience_s || 60) * 60;
+  const clk = document.getElementById("kClock"); if (clk) { clk.textContent = "⏱ " + fmtTime(snap.time_left_ticks || 0); clk.style.color = snap.time_left_ticks <= 1800 ? "#ff8a80" : ""; }
+  const pat = document.getElementById("kPat");
+  if (pat && c) { const f = c.patience_ticks_left / full; pat.className = "pat" + (f < .25 ? " low" : ""); pat.firstElementChild.style.width = Math.round(f * 100) + "%"; }
+  const fill = document.getElementById("kFill"); if (fill) fill.style.height = K.heat * 100 + "%";
+}
+function cozyTick() {
+  const now = performance.now(), dt = Math.min(.1, (now - kLast) / 1000); kLast = now;
+  if (!K) return;
+  const c = snap && (snap.customers || []).find((x) => x.id === K.orderId);
+  if (!snap || (snap.view || snap.mode) !== "quan" || snap.finished || !c || c.order_status !== "reserved") return kClose();
+  if (K.holding && snap.state !== "paused") { K.heat += dt / HEAT_S; if (K.heat >= 1) kSpill("Tràn nồi! Đổ bỏ, làm lại từ đầu."); }
+  kLive();
+}
+function cozyKeyDown(e) {
+  if (!COZY) return false;
+  const k = keyName(e);
+  if (K) {
+    if (k === "p" || k === "escape" || k === "r") return false;   // tạm dừng / chơi lại đi tiếp như thường
+    e.preventDefault();
+    if (e.repeat) return true;
+    if (k === " ") kHoldStart();
+    else if (k === "q") kClose();
+    else if (k === "enter" && K.stage === "season") kAct("fire");
+    else if (/^[1-6]$/.test(k)) {
+      if (K.stage === "tool" && +k <= 5) kAct("tool", Object.keys(TOOLS)[+k - 1]);
+      else if (K.stage === "ing") kAct("ing", Object.keys(KIND_NAME)[+k - 1]);
+    }
+    return true;
+  }
+  if (k === "e" && !e.repeat && snap && (snap.view || snap.mode) === "quan" && snap.state === "playing" && !snap.finished && !snap.hand) {
+    const n = cozyNearest(), c = n && n[3] === "stove" && n[4].state === "idle" ? cozyOldest() : null;
+    if (c) { e.preventDefault(); kOpen(c, n[4]); return true; }
+  }
+  return false;
+}
+function cozyKeyUp(e) {
+  if (!K || keyName(e) !== " ") return false;
+  e.preventDefault(); kHoldEnd(); return true;
+}
+kEl.addEventListener("click", (e) => { const b = e.target.closest("[data-act]"); if (b) kAct(b.dataset.act, b.dataset.arg); });
+
 function frame() {
   requestAnimationFrame(frame);  // đặt trước để lỗi vẽ không làm dừng vòng lặp
+  cozyEvents(); cozyTick();
   const [w, h] = fit();
   ctx.fillStyle = "#10161c"; ctx.fillRect(0, 0, w, h);
   if (snap) {
