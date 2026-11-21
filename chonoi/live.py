@@ -13,6 +13,7 @@ Ngẫu nhiên vẫn đi qua `Streams` (seed); chỉ nhịp chạy theo đồng h
 """
 
 import argparse
+import copy
 import json
 import os
 import sys
@@ -32,6 +33,22 @@ WEB_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "web")
 TICK_S = 1.0 / 60.0
 MAX_BODY = 4096
 RECENT_EVENTS = 40
+
+
+def demo_tuning(tuning):
+    """Chế độ demo (chỉ cửa sổ chơi): ngắn hơn, dễ hơn để trình diễn trọn một Ngày. Headless KHÔNG dùng."""
+    t = copy.deepcopy(tuning)
+    g, q = t["gather"], t["quan"]
+    g["duration_s"] = 90
+    g["oxygen_max_s"] = 60
+    q["duration_s"] = 120
+    q["customer_interval_s"] = 8
+    q["patience_s"] = 120
+    q["interact_radius"] = 2.5
+    q["walk_speed"] = 6.0
+    for d in t["menu"].values():
+        d["cook_s"] = max(1, d["cook_s"] / 2)
+    return t
 
 
 class LiveGame:
@@ -280,6 +297,8 @@ def main(argv=None) -> int:
             raise BadInput("--days phải từ 1 đến 5")
         if a.demo and a.mode != "day":
             raise BadInput("--demo chỉ dùng với --mode day")
+        if a.demo:
+            tuning = demo_tuning(tuning)
         game = LiveGame(a.mode, tuning, scenario, a.seed, inventory, a.inventory_out, days=a.days, demo=a.demo)
         server = LiveServer(game, a.host, a.port)
     except BadInput as e:
