@@ -1,17 +1,23 @@
-"""So game.contract.json với số chuẩn Test Contract v1.1 (TICKET-02 mục 1–2, 4.1).
+"""So game.contract.json với số chuẩn Test Contract v1.3.
+
+Số chuẩn lõi lấy từ TICKET-02 mục 1–2, 4.1 (v1.1); thêm `tuning.freshness` (TICKET-03, v1.2) và
+`bench_cmd`/`soak_cmd` ở gốc (TICKET-04, v1.3). Mở rộng đã khai trong `extensions` thì kiểm khóa đi kèm.
 
 Chạy: python3 .agents/skills/check-contract/check_contract.py [đường-dẫn-contract]
 Mã thoát 0 khi khớp, 1 khi còn chỗ thiếu/sai (in từng dòng).
-Chỉ kiểm lõi; khóa mở rộng (weapon, net, snake, burn hữu hạn, vendor, ca_ho) không bắt buộc.
 """
 
 import json
 import sys
 
+VERSION = "1.3"
+
 # đường dẫn khóa (tách bằng ".") → giá trị chuẩn
 EXPECTED = {
-    "contract_version": "1.1",
+    "contract_version": VERSION,
     "tuning.tick_hz": 60,
+    # Độ tươi (v1.2)
+    "tuning.freshness": {"initial": 100, "gather_decay_per_s": 0.5, "quan_decay_per_s": 0.25, "spoiled_below": 30},
     # Buổi sáng
     "tuning.gather.duration_s": 180,
     "tuning.gather.bounds": {"x": [0, 100], "d": [0, 30]},
@@ -152,6 +158,24 @@ def check(c):
     if burn is _MISSING:
         errs.append("thiếu tuning.quan.burn_s (lõi: null; mở rộng Cháy: 20)")
 
+    # v1.3: lệnh benchmark và soak ở gốc
+    for key in ("bench_cmd", "soak_cmd"):
+        v = c.get(key)
+        if not isinstance(v, str) or not v.strip():
+            errs.append(f"thiếu {key} ở gốc (chuỗi lệnh khác rỗng, vd. \"python3 -m chonoi.{key[:-4]}\")")
+
+    # Mở rộng đã khai thì phải có khóa đi kèm
+    ext = c.get("extensions")
+    if not isinstance(ext, list) or not all(isinstance(e, str) for e in ext):
+        errs.append(f"extensions phải là mảng chuỗi, đang là {ext}")
+        ext = []
+    if "burn" in ext and not (isinstance(burn, (int, float)) and not isinstance(burn, bool) and burn > 0):
+        errs.append(f"extensions có burn nhưng tuning.quan.burn_s = {burn if burn is not _MISSING else 'thiếu'} (chuẩn 20)")
+    if "net" in ext:
+        net = get(c, "tuning.shop.upgrades.net")
+        if not isinstance(net, list) or not net:
+            errs.append("extensions có net nhưng thiếu tuning.shop.upgrades.net")
+
     nodes = by_id(get(c, "tuning.gather.nodes") if get(c, "tuning.gather.nodes") is not _MISSING else [])
     for nid, (kind, pos) in NODES.items():
         n = nodes.get(nid)
@@ -210,7 +234,7 @@ def main():
     errs = check(c)
     for e in errs:
         print("- " + e)
-    print(f"{'KHỚP' if not errs else 'CHƯA KHỚP'} số chuẩn v1.1: {len(errs)} chỗ cần sửa")
+    print(f"{'KHỚP' if not errs else 'CHƯA KHỚP'} số chuẩn v{VERSION}: {len(errs)} chỗ cần sửa")
     sys.exit(1 if errs else 0)
 
 
