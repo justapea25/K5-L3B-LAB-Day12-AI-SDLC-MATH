@@ -1,0 +1,36 @@
+2026-11-21 | phase-3 | e4daaf4c93e5ac1dc2724cbc3ede432fce536014 | Windows 11, Python 3.13.17
+
+dock.json = {"gather": {"hold": [{"id": "I1", "kind": "ca_linh", "fresh": 100}], "random_fish": false, "monsters": []}}
+inputs.json = {"frames": [{"tick": 0, "interact": true}]}
+python -m chonoi.headless --mode gather --seed 1 --ticks 1 --out gather.jsonl --scenario dock.json --inputs inputs.json --inventory-out catch.json
+Mã thoát: 0 | 0.247 s
+python -m chonoi.headless --mode quan --seed 1 --ticks 0 --out quan.jsonl --inventory catch.json
+Mã thoát: 0 | 0.235 s
+Bàn giao kho: ĐẠT
+catch.json.items = [{'id': 'I1', 'kind': 'ca_linh', 'fresh': 99.99166666666666}]
+quan tick 0 stock = [{'id': 'I1', 'kind': 'ca_linh', 'fresh': 99.992}]
+fresh30.json = {"gather": {"hold": [{"id": "I1", "kind": "ca_linh", "fresh": 30}], "random_fish": false, "monsters": []}}
+python -m chonoi.headless --mode gather --seed 1 --ticks 1 --out spoiled.jsonl --scenario fresh30.json
+Mã thoát: 0 | 0.248 s
+Ngưỡng ươn: ĐẠT
+[{"type": "event", "tick": 1, "phase": "gather", "name": "spoiled", "data": {"item_id": "I1", "kind": "ca_linh", "location": "hold"}}]
+count.json = {"items": {"ca_linh": 3}}
+python -m chonoi.headless --mode quan --seed 1 --ticks 0 --out invalid.jsonl --inventory count.json
+Mã thoát: 2 | 0.247 s
+đầu vào sai: items phải là mảng cá thể {id, kind, fresh} (kho đếm không còn hợp lệ ở v1.2)
+Từ chối kho đếm: ĐẠT
+Mã thoát: 2
+python -m chonoi.headless --mode day --seed 1 --ticks 22200 --out day1.jsonl --days 1
+Mã thoát: 0 | 1.558 s
+Một Ngày: ĐẠT
+{"type": "end", "ticks": 22200, "sim_tick": 22200, "mode": "day", "state": "finished", "reason": "days_complete", "days_completed": 1, "money": 0, "earned": 0, "reputation": 3.0, "score": 300}
+Sự kiện chuyển pha: day_start, day_plan, phase_start, gather_end, phase_start, quan_end, phase_start, shop_end
+day-shop.json = {"day": {"money": 300, "earned": 300}, "gather": {"hold": [{"id": "I1", "kind": "ca_loc", "fresh": 100}], "random_fish": false}}
+day-inputs.json = {"frames": [{"tick": 0, "interact": true}, {"tick": 10802, "buy": "oxygen"}, {"tick": 10803, "shop_done": true}]}
+python -m chonoi.headless --mode day --seed 1 --ticks 66600 --out day3.jsonl --days 3 --scenario day-shop.json --inputs day-inputs.json --snapshot-every 1
+Mã thoát: 0 | 7.680 s
+Ba Ngày và nâng cấp: ĐẠT
+bought = {'type': 'event', 'tick': 10803, 'phase': 'shop', 'day': 1, 'name': 'bought', 'data': {'upgrade': 'oxygen', 'level': 1, 'price': 200, 'money': 100}}
+Ngày 1 sau mua: {}
+Ngày 2 bắt đầu: {'oxygen': 1}
+end = {'type': 'end', 'ticks': 55204, 'sim_tick': 55204, 'mode': 'day', 'state': 'finished', 'reason': 'days_complete', 'days_completed': 3, 'money': 100, 'earned': 300, 'reputation': 2.0, 'score': 500}

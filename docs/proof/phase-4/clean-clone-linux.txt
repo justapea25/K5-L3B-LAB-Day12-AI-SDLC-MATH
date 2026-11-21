@@ -1,0 +1,26 @@
+2026-11-21 | phase-4 | 5e188e71a2ef1bda280b54628d4e4da1d6a8b2f9 | Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39 | Python 3.12.3
+
+git clone --branch phase-4 https://github.com/justapea25/K5-L3B-LAB-Day12-AI-SDLC-MATH.git cho-noi
+Cloning into 'cho-noi'...
+Note: switching to '5e188e71a2ef1bda280b54628d4e4da1d6a8b2f9'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+cd cho-noi
+python3 -m chonoi.live --mode day --port 0
+Mở trình duyệt tại http://127.0.0.1:33935/  (chế độ day, seed 1). Ctrl+C để dừng.
+GET /: HTTP 200, canvas present.
+GET /state: HTTP 200, phase=gather.

@@ -1,0 +1,16 @@
+2026-11-21 | phase-3 | e4daaf4c93e5ac1dc2724cbc3ede432fce536014 | Windows 11, Python 3.13.17
+
+python -m chonoi.headless --mode gather --seed 1 --ticks 600 --out gather-1.jsonl
+Mã thoát: 0 | 0.289 s
+python -m chonoi.headless --mode gather --seed 1 --ticks 600 --out gather-2.jsonl
+Mã thoát: 0 | 0.256 s
+gather: ĐẠT
+gather-1.jsonl: 109008 byte, SHA-256 f5c98ad5da467a4ab5eb2e82bc712cd428a3d98cb88ac4956d57b7129f62d260
+gather-2.jsonl: 109008 byte, SHA-256 f5c98ad5da467a4ab5eb2e82bc712cd428a3d98cb88ac4956d57b7129f62d260
+python -m chonoi.headless --mode quan --seed 1 --ticks 600 --out quan-1.jsonl
+Mã thoát: 0 | 0.244 s
+python -m chonoi.headless --mode quan --seed 1 --ticks 600 --out quan-2.jsonl
+Mã thoát: 0 | 0.257 s
+quan: ĐẠT
+quan-1.jsonl: 37938 byte, SHA-256 75167f35984edf408f80aa4c7f7c2ec02887efcb7bd9486ac7a5d3ac438db344
+quan-2.jsonl: 37938 byte, SHA-256 75167f35984edf408f80aa4c7f7c2ec02887efcb7bd9486ac7a5d3ac438db344

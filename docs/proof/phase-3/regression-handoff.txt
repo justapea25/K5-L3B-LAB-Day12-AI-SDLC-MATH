@@ -1,0 +1,15 @@
+2026-11-21 | phase-3 | e4daaf4c93e5ac1dc2724cbc3ede432fce536014 | Windows 11, Python 3.13.17
+
+Test QA mới được chép vào bản trích xuất tạm từ tag; mã game dùng đúng commit bên trên.
+python -m unittest test_regression -v
+Windows: python3 trong tiến trình con được ánh xạ sang Python đang chạy.
+
+test_ban_giao_hang_uon_va_pause_khong_hao_tuoi (test_regression.DayHandoffRegression.test_ban_giao_hang_uon_va_pause_khong_hao_tuoi)
+AC-P2-13, AC-P2-18, AC-P3-05, AC-P3-08. ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.332s
+
+OK
+
+Mã thoát: 0

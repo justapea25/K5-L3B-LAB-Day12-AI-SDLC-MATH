@@ -1,0 +1,13 @@
+2026-11-21 | phase-4 | 5e188e71a2ef1bda280b54628d4e4da1d6a8b2f9 | Windows 11, Python 3.13.17
+
+Chrome, 1280×720. Ảnh canvas lấy từ máy chủ live với scenario bên dưới, ở mặc định và sau phím H.
+
+python -m chonoi.live --mode gather --port 0 --scenario gather.json
+gather.json = {"gather": {"player": {"pos": [51, 24], "oxygen_ticks": 440}, "random_fish": false}}
+canh-bao-gather.png: {"tick":222,"mode":"gather","warnings":["Thủy quái!","Oxy sắp hết!"],"filter":"","intro":false}
+canh-bao-gather-tuong-phan-cao.png: {"tick":226,"mode":"gather","warnings":["Thủy quái!","Oxy sắp hết!"],"filter":"contrast(1.9) saturate(1.3)","intro":false}
+
+python -m chonoi.live --mode quan --port 0 --scenario quan.json
+quan.json = {"quan": {"stock": [{"id": "I1", "kind": "ca_loc", "fresh": 100}, {"id": "I2", "kind": "ca_loc", "fresh": 100}], "customers": [{"id": "C1", "table_id": "T1", "dish_id": "ca_loc_nuong_trui", "patience_ticks_left": 600}], "random_customers": false}}
+canh-bao-quan.png: {"tick":219,"mode":"quan","warnings":["Khách sắp giận! (bàn T1)"],"filter":"","intro":false}
+canh-bao-quan-tuong-phan-cao.png: {"tick":226,"mode":"quan","warnings":["Khách sắp giận! (bàn T1)"],"filter":"contrast(1.9) saturate(1.3)","intro":false}

@@ -1,0 +1,9 @@
+2026-11-21 | phase-4 | 5e188e71a2ef1bda280b54628d4e4da1d6a8b2f9 | Windows 11, Python 3.13.17
+
+git clone --no-local --branch phase-4 <repo-local> cho-noi
+cd cho-noi
+python -m chonoi.live --mode day --port 0
+Mở trình duyệt tại http://127.0.0.1:53915/  (chế độ day, seed 1). Ctrl+C để dừng.
+GET /: HTTP 200, có canvas.
+GET /state: HTTP 200, phase=gather.
+Clone mới từ repo cục bộ trên Windows. Chưa thử quy trình clone công khai trên macOS/Linux.

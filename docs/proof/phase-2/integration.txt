@@ -1,0 +1,11 @@
+2026-11-21 | phase-2 | 8ad6172a7ccaf80a728bca8815ea56589d7d4aed | Windows 11, Python 3.13.17
+
+dock.json = {"gather": {"hold": ["ca_loc", "bong_sung", "bong_sung"]}}
+inputs.json = {"frames": [{"tick": 0, "interact": true}]}
+python -m chonoi.headless --mode gather --seed 42 --ticks 1 --out gather.jsonl --scenario dock.json --inputs inputs.json --inventory-out catch.json
+Mã thoát: 0 | 0.248 s
+python -m chonoi.headless --mode quan --seed 42 --ticks 0 --out quan.jsonl --inventory catch.json
+Mã thoát: 0 | 0.236 s
+Bàn giao kho: ĐẠT
+catch.json.items = {'bong_sung': 2, 'ca_loc': 1}
+quan tick 0 stock = {'bong_sung': 2, 'ca_loc': 1}
