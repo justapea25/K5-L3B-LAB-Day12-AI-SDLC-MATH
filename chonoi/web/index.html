@@ -726,6 +726,11 @@ function drawSummary(w, h) {
   text("Nhấn R để chơi lại", w / 2, h / 2 + 96, { align: "center", size: 18, color: "#cfd8dc" });
 }
 function drawShop(w, h) {
+  // nền: tranh chợ nổi mờ, cùng tông với hai cảnh kia
+  if (riverbank.naturalWidth) {
+    const k = Math.max(w / riverbank.width, h / riverbank.height);
+    ctx.globalAlpha = 0.45; ctx.drawImage(riverbank, (w - riverbank.width * k) / 2, (h - riverbank.height * k) / 2, riverbank.width * k, riverbank.height * k); ctx.globalAlpha = 1;
+  }
   const ups = (snap.meta && snap.meta.upgrades) || {};
   panel(w / 2 - 330, 34, 660, 316);
   title("Shop cuối Ngày " + snap.day, w / 2, 74, 28);
