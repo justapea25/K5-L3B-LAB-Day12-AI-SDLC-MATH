@@ -38,6 +38,8 @@ Chơi vòng ngày (5 Ngày): Má Tư đọc món cần nấu → lặn hái → 
 | Enter | — | — | Đóng Shop |
 | P / Esc | Tạm dừng | Tạm dừng | Tạm dừng |
 | H | Bật/tắt **tương phản cao** (hoặc mở với `?contrast=high`) | ← | ← |
+| K | Bỏ qua buổi sáng (về bến) | Bỏ qua buổi tối (đóng ca) | Đóng Shop |
+| N | Bật/tắt âm thanh (phụ đề SFX vẫn hiện) | ← | ← |
 | R | Chơi lại | Chơi lại | Chơi lại |
 
 **Cảnh báo (Phase 4):** 🐊 *Thủy quái!* + viền tím khi Cá Sấu trong 10 m ở vùng sâu · 🫧 *Oxy sắp hết!* (< 25%) / *Hết hơi!* (oxy 0) · 😠 *Khách sắp giận!* (kiên nhẫn < 25%, kèm số bàn). Giỏ có thanh **độ tươi** từng món, hàng ươn bị gạch chéo đỏ.
@@ -75,6 +77,10 @@ Tài liệu nhóm Math: [Kế hoạch](docs/plan/) · [Ma trận kiểm chứng]
 | Chế độ tương phản cao lưu lựa chọn giữa các lần mở (localStorage) | 4 | Chỉ ở giao diện | Toàn bộ test headless xanh |
 | Chế độ demo "Má Tư đi chợ": `python3 -m chonoi.live --mode day --demo`, tối nào kho cũng có thêm đủ nguyên liệu theo kế hoạch để luôn có khách | 4 | Chỉ bật bằng cờ `--demo` của cửa sổ chơi; headless/`DaySession` mặc định tắt | Toàn bộ test headless xanh |
 | Màn Kết quả Ngày (trong Shop) và Tổng kết sau Ngày cuối: khách phục vụ/bỏ đi, tiền, boa, uy tín, món bán chạy | 4 | Số liệu tính ở cửa sổ chơi, không thêm vào JSONL | Toàn bộ test headless xanh |
+| Âm thanh + **phụ đề SFX** (♪ cá quẫy, ting món chín, leng keng thu tiền, Cá Sấu đớp…), phím N tắt tiếng, phụ đề vẫn hiện | 4 | Chỉ giao diện (WebAudio) | Toàn bộ test headless xanh |
+| Số tiền bay lên "+70k 💰" khi khách trả tiền, "+3 🐠" khi bắt cá; đom đóm trên sông buổi tối; thông báo sự kiện tiếng Việt | 4 | Chỉ giao diện | Toàn bộ test headless xanh |
+| Tranh chợ nổi, nhà bè và nhân vật chibi (@Kaylez-TXL) + Cá Sấu chibi SVG tự vẽ, quay mặt theo hướng bơi/đuổi | 4 | Chỉ giao diện (`chonoi/web/art/`) | Toàn bộ test headless xanh |
+| Phím K bỏ qua buổi (về bến / đóng ca / đóng Shop) bằng đúng luật, tiện demo | 4 | Chỉ cửa sổ chơi (`POST /skip`) | Toàn bộ test headless xanh |
 
 ## Tự do sáng tạo
 
