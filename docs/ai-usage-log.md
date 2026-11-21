@@ -28,7 +28,9 @@
 
 | Phase | Công cụ / model | Việc | Token / chi phí ước tính | Ghi chú (AI sai ở đâu?) |
 |---|---|---|---|---|
-| 1 | Claude Code (Sonnet 5.5) | Viết `quan_service.py`, test lát 4, docs Scrum | (điền) | Lần đầu viết khi chưa có khung của Lead nên dùng thêm state `assigned`/`left` ngoài hợp đồng khách; sửa lại sau khi rebase; sau đó schema khách đổi tên trường (`dish`→`dish_id`...) nên phải viết lại một lượt |
+| 1 | Claude Code (Sonnet 5.5) | Viết `quan_service.py`, test lát 4, docs Scrum | chưa đo | Lần đầu viết khi chưa có khung của Lead nên dùng thêm state `assigned`/`left` ngoài hợp đồng khách; sửa lại sau khi rebase; sau đó schema khách đổi tên trường (`dish`→`dish_id`...) nên phải viết lại một lượt |
+| 2 | Claude Code (Sonnet 5.5) | Ghép lát 4 với `quan_customers` (lát 3) và contract v1.1: payload món ở bếp/tay, `served`/`paid` theo test QA | chưa đo | Lần đầu AI đoán tên trường sự kiện (`customer_id`, `dish`); test QA đọc PRD cho tên khác (`order_id`, `dish_id`, `amount`) nên phải sửa. Một test của tôi dùng `reserved={}` cho đơn `reserved` bị kiểm khách dựng sẵn từ chối (mã 2), phải đổi fixture |
+| 3–4 | Claude Code (Sonnet 5.5) | Chẩn đoán "game quán không có khách" (menu lọc theo kế hoạch Ngày, kho phải đủ nguyên liệu), viết hướng dẫn chơi, điền TEAM/members/retro/standup | chưa đo | AI không mở được link game của người khác nên không xác nhận được cấu hình; chỉ kết luận từ code và chạy headless |
 
 ## Kaylez-TXL
 
