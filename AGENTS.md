@@ -30,7 +30,7 @@
 | `chonoi/sim/gather_skills.py` | Sáng tạo: kỹ năng F/G, tắt ở headless (`skills.enabled: false`) | @LETHESHIYING |
 | `chonoi/day.py`, `chonoi/bench.py`, `chonoi/soak.py` | Vòng ngày, bàn giao kho; benchmark; soak (v1.3) | @justapea25 |
 | `chonoi/shop.py` | Shop: mua nâng cấp, `shop_done`, tự đóng 600 tick | @Kaylez-TXL |
-| `chonoi/sim/quan_customers.py`, `chonoi/scenario.py` | Lát 3: `spawn_customers`, `tick_customers` (khách đến, chọn món, giữ chỗ, kiên nhẫn, khách rời) | @viethoang126 |
+| `chonoi/sim/quan_customers.py`, `chonoi/scenario.py` | Lát 3: `spawn_customers`, `tick_customers` (khách đến, chọn món, giữ chỗ, kiên nhẫn, khách rời) | @viethoang127 |
 | `chonoi/sim/quan.py`, `chonoi/sim/quan_service.py` | Lát 4: interact, bếp, bưng, phục vụ, tiền, boa, uy tín, `quan_end` | @minhthu27 |
 | `tests/test_integration.py`, `docs/verification/`, `docs/proof/` | Test hộp đen theo AC, bằng chứng | @Kaylez-TXL |
 | `tests/test_phase2.py`, `test_phase3.py`, `test_phase4.py`, `test_ext_burn_net.py`, `test_extensions_manifest.py` | Test theo phase và mở rộng | @justapea25 |

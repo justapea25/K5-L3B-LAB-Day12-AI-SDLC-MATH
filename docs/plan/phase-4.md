@@ -42,4 +42,4 @@ Không làm: bảng xếp hạng cục bộ (`leaderboard`).
 ## Việc còn mở (PO theo dõi)
 
 - AC-P4-07, 08, 09: chưa có ảnh chụp cảnh báo và log thử clone sạch trong `docs/proof/phase-4/`.
-- AC-P4-14, 15: chưa có `docs/verification/phase-4.md`, `docs/retro.md` còn trống, thiếu `docs/members/minhthu27.md` và `docs/members/viethoang126.md`.
+- AC-P4-14, 15: chưa có `docs/verification/phase-4.md`, `docs/retro.md` còn trống, thiếu `docs/members/minhthu27.md` và `docs/members/viethoang127.md`.

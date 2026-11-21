@@ -11,7 +11,7 @@
 | Chế độ `day` + pause (đổi pha, `day_plan`, bàn giao kho, cấp nâng cấp), tích hợp, gắn tag | @justapea25 | `chonoi/day.py` (mới), `runner.py`, `headless.py`, `inputs.py` | contract v1.1, Shop | 13, 14, 17, 18, 19 |
 | Cá bơi (đổi hướng theo seed, phản xạ mép), bắt cá 3 loài, hái kèo nèo | @LETHESHIYING | `gather_fish.py` (`swim`), `gather_harvest.py` | contract v1.1 | 03, 05 |
 | Cá Sấu: patrol/chase/hit/recoil, bất tử, mất hàng LIFO, ngất do quái | @minhthu27 | `gather_monsters.py` | contract v1.1 | 06, 07, 08, 09 |
-| Quán v1.1: 2 bếp/4 bàn, bếp nhận đơn cũ nhất, lọc món theo kế hoạch ngày, luật đóng ca | @viethoang126 | `quan.py`, `quan_customers.py`, `quan_service.py` | contract v1.1 | 10, 12 |
+| Quán v1.1: 2 bếp/4 bàn, bếp nhận đơn cũ nhất, lọc món theo kế hoạch ngày, luật đóng ca | @viethoang127 | `quan.py`, `quan_customers.py`, `quan_service.py` | contract v1.1 | 10, 12 |
 | Shop: mua oxygen/hp, `bought`/`buy_failed`, `shop_done`, tự đóng 600 tick; QA: cập nhật test P1 theo số chuẩn, smoke tích hợp (phút 20, 35), `verification/phase-2.md` | @Kaylez-TXL | `chonoi/shop.py` (mới), `tests/`, `docs/proof/phase-2/` | contract v1.1 | 15, 16, 22, 23, 24, 25 |
 | PO: `clarify.md`, plan, AGENTS.md, skill; giao diện: menu, DayIntro/EveningIntro/DayResult/Summary, pause, HUD | @linkiewinkie | `chonoi/web/index.html`, `chonoi/live.py`, docs | snapshot v1.1 | 20, 21, 25 |
 

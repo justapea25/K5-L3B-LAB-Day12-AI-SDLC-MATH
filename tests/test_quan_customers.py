@@ -1,4 +1,4 @@
-"""Test lát 3 (@viethoang126): khách của quán — đến theo lịch, chọn món, giữ chỗ, kiên nhẫn, bỏ đi, no_dish,
+"""Test lát 3 (@viethoang127): khách của quán — đến theo lịch, chọn món, giữ chỗ, kiên nhẫn, bỏ đi, no_dish,
 và khách dựng sẵn từ scenario. Dữ liệu thử tự dựng trong file này; không sửa game.contract.json.
 
 Hàm lát 3 được gọi trực tiếp trên một QuanSim thật (quan.py chưa cần gọi chúng).

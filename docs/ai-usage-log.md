@@ -21,7 +21,7 @@
 | 2 | Claude Code (Claude Sonnet 5.5) | Giải quyết conflict khi merge `main`; sửa `gather`, `fish_caught`, `hold_full` theo PRD-0 | chưa đo | AI tự đặt tên trường sự kiện (`count`, `hold_count`) khác PRD-0 (`amount`, `yield`, `hold_full {action, id, required, free}`); phát hiện vì test tích hợp của QA đỏ sau khi merge `main`. Sửa và chạy lại toàn bộ test trước khi đẩy |
 | 3–4 | Claude Code (Claude Sonnet 5.5) | Kỹ năng thêm: giữ F lưới lớn, giữ G tăng tốc (`gather_skills.py`, 17 test), nối `live.py`/`index.html`; điều tra lỗi giỏ và bắt cá | chưa đo | Lần đầu script thay thế file không khớp vì file dùng CRLF; test dựng giỏ thiếu trường `fresh` bị headless từ chối. Điều tra "giỏ lỗi / không bắt được cá": chạy 100 ván ngẫu nhiên và thử qua server live, không tái hiện được lỗi logic; AI chỉ nêu nguyên nhân khả dĩ (hồi chiêu nuốt phím, cá linh cần đủ 3 chỗ, bộ gõ Telex), tôi tự thử lại trên game |
 
-## viethoang126
+## viethoang127
 
 | Phase | Công cụ / model | Việc | Token / chi phí ước tính | Ghi chú (AI sai ở đâu?) |
 |---|---|---|---|---|

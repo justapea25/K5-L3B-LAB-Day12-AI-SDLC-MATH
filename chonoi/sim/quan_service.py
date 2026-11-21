@@ -1,6 +1,6 @@
 """Quán lát 4 (@minhthu27) — bếp, bưng, phục vụ, tiền, boa, uy tín. Lát này giữ luôn `quan.py`.
 
-Theo schema khách trong docs/contracts/customer.md (bản của @viethoang126, theo PRD-0 D/E/F):
+Theo schema khách trong docs/contracts/customer.md (bản của @viethoang127, theo PRD-0 D/E/F):
 `dish_id`, `order_tick`, `state` (waiting|eating), `patience_ticks_left`, `eat_ticks_left`,
 `order_status` (reserved|assigned|unfulfillable|served), `reserved`, `base_price`, `tip`.
 

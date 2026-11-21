@@ -8,7 +8,7 @@
 |---|---|---|---|---|
 | Lát 1 — oxy, ngạt, Máu, ngất, dive/surface, giỏ LIFO | @justapea25 | `sim/gather.py` | Push `_add_to_hold` trước; sửa contract theo [clarify #3, #7](../clarify.md) | 05–08 |
 | Lát 2 — hái, mọc lại, bắt cá, hồi chiêu, `hold_full` | @LETHESHIYING | `sim/gather_harvest.py` | Cần helper giỏ (đã đổi tham số theo clarify #3) | 10–13 |
-| Lát 3 — khách đến, chọn món, giữ chỗ, kiên nhẫn, bỏ đi, `no_dish` | @viethoang126 | `sim/quan_customers.py`, `scenario.py` | Chốt schema khách theo [clarify #7](../clarify.md) trước để lát 4 code; làm trọn việc khách rời ([clarify #6](../clarify.md)) | 15, 16, 20 |
+| Lát 3 — khách đến, chọn món, giữ chỗ, kiên nhẫn, bỏ đi, `no_dish` | @viethoang127 | `sim/quan_customers.py`, `scenario.py` | Chốt schema khách theo [clarify #7](../clarify.md) trước để lát 4 code; làm trọn việc khách rời ([clarify #6](../clarify.md)) | 15, 16, 20 |
 | Lát 4 — bếp, bưng, phục vụ, tiền, boa, uy tín, `quan_end` | @minhthu27 | `sim/quan.py`, `sim/quan_service.py` | Dùng schema khách của lát 3 | 17–20 |
 | QA — test hộp đen theo AC, tích hợp, verification | @Kaylez-TXL | `tests/test_integration.py`, `docs/verification/`, `docs/proof/` | Chạy trên commit tích hợp | 01–04, 09, 14, 21 |
 | PO, harness AI, docs | @linkiewinkie | `docs/clarify.md`, `docs/plan/`, `AGENTS.md`, `.agents/skills/`, `README.md`, `CREDITS.md` | Trả lời câu hỏi PRD trong clarify | 23 |

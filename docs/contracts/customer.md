@@ -1,6 +1,6 @@
 # Schema khách (Quán, lát 3)
 
-> Chủ: @viethoang126. Người dùng: @minhthu27 (`quan.py`, `quan_service.py`), @Kaylez-TXL (test hộp đen).
+> Chủ: @viethoang127. Người dùng: @minhthu27 (`quan.py`, `quan_service.py`), @Kaylez-TXL (test hộp đen).
 > Nguồn: PRD-0 mục D (scenario), E (JSONL), F (luật một bước). Chỗ nào PRD **không nói rõ** thì ghi "Giả định" và liệt kê ở mục 7.
 > Đổi schema sau khi đã gộp: báo cả nhóm, ghi lý do ở cuối file.
 
@@ -49,9 +49,9 @@ Khách rời bàn **không phải trạng thái**: khách bị xóa khỏi `cust
 
 | Sự kiện | `data` | Ai phát | Khi nào |
 |---|---|---|---|
-| `customer_arrived` | `{order_id, table_id, dish_id}` | `spawn_customers` (@viethoang126) | Khách mới ngồi vào bàn, đã chọn món và giữ chỗ. `order_id` = `id` khách. |
+| `customer_arrived` | `{order_id, table_id, dish_id}` | `spawn_customers` (@viethoang127) | Khách mới ngồi vào bàn, đã chọn món và giữ chỗ. `order_id` = `id` khách. |
 | `no_dish` | `{}` | `spawn_customers` | Đến lượt, **có bàn trống** nhưng không món nào đủ nguyên liệu. Không tạo khách, kho không đổi. |
-| `customer_left` | `{order_id, table_id, reason, reputation}` | `tick_customers` (@viethoang126) | `reason = "patience"`: khách `waiting` có kiên nhẫn 0 khi ca còn giờ, uy tín cộng `left_reputation_delta`. `reason = "closing"`: hết ca, khách còn chờ rời, **không trừ uy tín**. `reputation` là uy tín sau thay đổi. |
+| `customer_left` | `{order_id, table_id, reason, reputation}` | `tick_customers` (@viethoang127) | `reason = "patience"`: khách `waiting` có kiên nhẫn 0 khi ca còn giờ, uy tín cộng `left_reputation_delta`. `reason = "closing"`: hết ca, khách còn chờ rời, **không trừ uy tín**. `reputation` là uy tín sau thay đổi. |
 
 Do @minhthu27 phát: `cook_started`, `dish_ready`, `dish_picked`, `served`, `paid`, `quan_end`. Khi khách rời, **nhả phần giữ thô**, bỏ món của đơn đang nấu/ready/trên tay (nguyên liệu đã dùng không hoàn lại).
 
@@ -107,7 +107,7 @@ PRD không nói rõ các điểm sau; tạm quy ước như bên dưới, cần 
 1. **Kiên nhẫn của khách `eating`**: tạm coi **ngừng giảm** (chỉ `waiting` giảm), vì `served` còn mang `patience_ticks_left` để tính boa.
 2. **Thời điểm một đơn thành `unfulfillable`**: PRD chỉ mô tả trạng thái (còn chờ, rỗng giữ chỗ, không món), không nói luật chuyển. Tạm chỉ dùng cho fixture; luật sinh khách không tạo trạng thái này.
 3. **Tiền tố id khách**: tạm `C` (`C1`, `C2`…).
-4. **`customer_left` lúc closing**: tạm do @viethoang126 phát (cùng chỗ với bước rời), thứ tự theo id bàn. Cần khớp với `quan_end` của @minhthu27 (dọn xong mới `quan_end`).
+4. **`customer_left` lúc closing**: tạm do @viethoang127 phát (cùng chỗ với bước rời), thứ tự theo id bàn. Cần khớp với `quan_end` của @minhthu27 (dọn xong mới `quan_end`).
 5. **Tên luồng RNG** `customer_dish`: tạm; chỉ cần cố định để cùng seed cho cùng kết quả.
 6. **Khách `unfulfillable`/`assigned`** vẫn bị kiên nhẫn giảm và rời `patience` như khách `waiting` (vì `state` vẫn `waiting`).
 
