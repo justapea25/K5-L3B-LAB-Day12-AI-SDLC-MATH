@@ -170,7 +170,7 @@ class LiveGame:
             if not ok:
                 raise ValueError("move phải là [a, b] trong [-1, 1]")
         buttons = {}
-        for b in ("interact", "catch", "pause", "shop_done"):
+        for b in ("interact", "catch", "pause", "shop_done", "net", "sprint"):
             if b in body:
                 if not isinstance(body[b], bool):
                     raise ValueError(f"{b} phải là boolean")
@@ -280,6 +280,7 @@ def main(argv=None) -> int:
     p.add_argument("--port", type=int, default=8000, help="0 = cổng ngẫu nhiên")
     p.add_argument("--host", default="127.0.0.1")
     p.add_argument("--scenario")
+    p.add_argument("--no-skills", dest="no_skills", action="store_true", help="tắt kỹ năng thêm (F lưới, G tăng tốc)")
     p.add_argument("--inventory", help="chỉ với quan: nạp kho từ file")
     p.add_argument("--inventory-out", dest="inventory_out", help="chỉ với gather: ghi kho khi kết thúc buổi")
     a = p.parse_args(argv)
@@ -289,6 +290,8 @@ def main(argv=None) -> int:
         if a.inventory_out and a.mode != "gather":
             raise BadInput("--inventory-out chỉ dùng với gather")
         tuning = load_contract()["tuning"]
+        if "skills" in tuning and not a.no_skills:
+            tuning["skills"]["enabled"] = True  # chỉ cửa sổ chơi; headless đọc contract với enabled=false
         scenario = load_scenario(a.scenario, a.mode, tuning)
         inventory = read_inventory(a.inventory) if a.inventory else None
         if inventory is not None and "stock" in scenario:
