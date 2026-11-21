@@ -66,8 +66,8 @@ Tài liệu nhóm Math: [Kế hoạch](docs/plan/) · [Ma trận kiểm chứng]
 
 | Mục | Mã `extensions` | Phase | Test / bằng chứng |
 |---|---|---|---|
-| Cháy món: món chín để quá 20 s thì cháy, nguyên liệu mất, giữ lại cho đơn hoặc `unfulfillable` | `burn` | 3 | [`tests/test_ext_burn_net.py`](tests/test_ext_burn_net.py) (`Burn`) |
-| Vợt hút cá: mua ở Shop, cấp 1 bắt tối đa 2 đàn trong 4 m, cấp 2 tối đa 3 đàn trong 6 m | `net` | 3 | [`tests/test_ext_burn_net.py`](tests/test_ext_burn_net.py) (`Net`), [`tests/test_extensions_manifest.py`](tests/test_extensions_manifest.py) |
+| Cháy món: món chín để quá 20 s thì cháy, nguyên liệu mất, giữ lại cho đơn hoặc `unfulfillable` | `burn` | 3 (gộp sau tag `phase-3`, có từ `phase-4`) | [`tests/test_ext_burn_net.py`](tests/test_ext_burn_net.py) (`Burn`) |
+| Vợt hút cá: mua ở Shop, cấp 1 bắt tối đa 2 đàn trong 4 m, cấp 2 tối đa 3 đàn trong 6 m | `net` | 3 (gộp sau tag `phase-3`, có từ `phase-4`) | [`tests/test_ext_burn_net.py`](tests/test_ext_burn_net.py) (`Net`), [`tests/test_extensions_manifest.py`](tests/test_extensions_manifest.py) |
 
 ### Sáng tạo của nhóm
 
@@ -75,12 +75,14 @@ Tài liệu nhóm Math: [Kế hoạch](docs/plan/) · [Ma trận kiểm chứng]
 |---|---|---|---|
 | HUD độ tươi: thanh màu dưới từng ô giỏ, gạch chéo hàng ươn, kho ghi độ tươi thấp nhất | 3 | Chỉ ở giao diện (`chonoi/web`), headless không đổi | Toàn bộ test headless xanh |
 | Chế độ tương phản cao lưu lựa chọn giữa các lần mở (localStorage) | 4 | Chỉ ở giao diện | Toàn bộ test headless xanh |
-| Chế độ demo "Má Tư đi chợ": `python3 -m chonoi.live --mode day --demo`, tối nào kho cũng có thêm đủ nguyên liệu theo kế hoạch để luôn có khách | 4 | Chỉ bật bằng cờ `--demo` của cửa sổ chơi; headless/`DaySession` mặc định tắt | Toàn bộ test headless xanh |
-| Màn Kết quả Ngày (trong Shop) và Tổng kết sau Ngày cuối: khách phục vụ/bỏ đi, tiền, boa, uy tín, món bán chạy | 4 | Số liệu tính ở cửa sổ chơi, không thêm vào JSONL | Toàn bộ test headless xanh |
-| Âm thanh + **phụ đề SFX** (♪ cá quẫy, ting món chín, leng keng thu tiền, Cá Sấu đớp…), phím N tắt tiếng, phụ đề vẫn hiện | 4 | Chỉ giao diện (WebAudio) | Toàn bộ test headless xanh |
-| Số tiền bay lên "+70k 💰" khi khách trả tiền, "+3 🐠" khi bắt cá; đom đóm trên sông buổi tối; thông báo sự kiện tiếng Việt | 4 | Chỉ giao diện | Toàn bộ test headless xanh |
-| Tranh chợ nổi, nhà bè và nhân vật chibi (@Kaylez-TXL) + Cá Sấu chibi SVG tự vẽ, quay mặt theo hướng bơi/đuổi | 4 | Chỉ giao diện (`chonoi/web/art/`) | Toàn bộ test headless xanh |
-| Phím K bỏ qua buổi (về bến / đóng ca / đóng Shop) bằng đúng luật, tiện demo | 4 | Chỉ cửa sổ chơi (`POST /skip`) | Toàn bộ test headless xanh |
+| Chế độ demo "Má Tư đi chợ": `python3 -m chonoi.live --mode day --demo`, tối nào kho cũng có thêm đủ nguyên liệu theo kế hoạch để luôn có khách | sau 4 | Chỉ bật bằng cờ `--demo` của cửa sổ chơi; headless/`DaySession` mặc định tắt | Toàn bộ test headless xanh |
+| Màn Kết quả Ngày (trong Shop) và Tổng kết sau Ngày cuối: khách phục vụ/bỏ đi, tiền, boa, uy tín, món bán chạy | sau 4 | Số liệu tính ở cửa sổ chơi, không thêm vào JSONL | Toàn bộ test headless xanh |
+| Kỹ năng khi lặn: giữ F phóng to lưới (bắt nhiều đàn gần nhất), giữ G tăng tốc; mỗi kỹ năng trừ thêm oxy | sau 4 | `tuning.skills.enabled: false` trong contract; chỉ cửa sổ chơi bật, tắt bằng `--no-skills` ([clarify #23](docs/clarify.md)) | `tests/test_gather_skills.py`; toàn bộ test headless xanh |
+| Tranh màu nước và sprite chibi (Út Sen, khách, bếp) của @Kaylez-TXL, cảnh quán nhà bè; Cá Sấu SVG tự vẽ, quay mặt theo hướng bơi/đuổi | sau 4 | Chỉ ở `chonoi/web` (`chonoi/web/art/`) | Toàn bộ test headless xanh; nguồn ở [CREDITS](CREDITS.md) |
+| Âm thanh SFX tổng hợp bằng WebAudio, có phụ đề (phím N tắt tiếng, phụ đề vẫn hiện), tiền bay lên ("+70k 💰", "+3 🐠"), đom đóm, thông báo sự kiện tiếng Việt | sau 4 | Chỉ ở `chonoi/web` | Toàn bộ test headless xanh; cần thêm bằng chứng chơi thử khi tắt tiếng |
+| Phím K bỏ qua buổi (về bến / đóng ca / đóng Shop) bằng đúng luật, tiện demo | sau 4 | Chỉ cửa sổ chơi (`POST /skip`) | Toàn bộ test headless xanh |
+
+"Sau 4" là gộp sau tag `phase-4`, nên không có trong Release v1.0.0 ([clarify #27](docs/clarify.md)).
 
 ## Tự do sáng tạo
 

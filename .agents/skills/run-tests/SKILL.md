@@ -51,7 +51,7 @@ done
 ## 3b. Từ Phase 2: vòng ngày (`--mode day`, Test Contract v1.1)
 
 ```bash
-python3 .agents/skills/check-contract/check_contract.py      # số chuẩn v1.1
+python3 .agents/skills/check-contract/check_contract.py      # số chuẩn v1.3 (lõi v1.1 + freshness + bench/soak)
 time python3 -m chonoi.headless --mode day --days 1 --seed 1 --ticks 22200 --out $T/day1.jsonl   # phải ≤ 20 s
 tail -1 $T/day1.jsonl          # end: reason "days_complete", days_completed 1
 grep -o '"name":"[a-z_]*"' $T/day1.jsonl | sort | uniq -c   # có day_start, day_plan, phase_start ×3, gather_end, quan_end, shop_end
@@ -60,6 +60,35 @@ grep -o '"active_upgrades":{[^}]*}' $T/day3.jsonl | uniq     # cấp mua ở Ng�
 ```
 
 QA lưu bằng chứng Phase 2 vào `docs/proof/phase-2/` (`integration.*` cho smoke ở mục 2, `day.*` cho vòng ngày).
+
+## 3c. Từ Phase 3: bàn giao kho cá thể và ngưỡng ươn (v1.2)
+
+```bash
+echo '{"gather":{"hold":[{"id":"I1","kind":"ca_linh","fresh":100}],"random_fish":false,"monsters":[]}}' > $T/sc100.json
+echo '{"frames":[{"tick":0,"interact":true}]}' > $T/dock.json
+python3 -m chonoi.headless --mode gather --seed 1 --ticks 5 --scenario $T/sc100.json --inputs $T/dock.json \
+  --inventory-out $T/kho.json --out $T/g.jsonl
+cat $T/kho.json                # {"items":[{"id":"I1","kind":"ca_linh","fresh":99.99166…}]} (đã hao 1 bước ở giỏ)
+python3 -m chonoi.headless --mode quan --seed 1 --ticks 0 --inventory $T/kho.json --out $T/q.jsonl
+grep -o '"stock":[^]]*]' $T/q.jsonl | head -1   # "stock":[{"id":"I1","kind":"ca_linh","fresh":99.992}]: cùng id, kind, fresh (±0.01)
+echo '{"gather":{"hold":[{"id":"I1","kind":"ca_linh","fresh":30}],"random_fish":false,"monsters":[]}}' > $T/sc30.json
+python3 -m chonoi.headless --mode gather --seed 1 --ticks 1 --scenario $T/sc30.json --out $T/s.jsonl
+grep '"spoiled"' $T/s.jsonl    # đúng 1 dòng: tick 1, item_id I1, location hold
+echo '{"items":{"ca_linh":3}}' > $T/kho_dem.json
+python3 -m chonoi.headless --mode quan --seed 1 --ticks 0 --inventory $T/kho_dem.json --out $T/x.jsonl; echo "mã $?"   # phải là 2
+```
+
+## 3d. Từ Phase 4: benchmark và soak (v1.3)
+
+```bash
+python3 -m chonoi.bench --seed 42 --duration 30 --out $T/bench.json && cat $T/bench.json   # đủ 5 trường
+python3 -m chonoi.soak --seed 7 --days 10 --out $T/soak1.json
+python3 -m chonoi.soak --seed 7 --days 10 --out $T/soak2.json
+grep -E '"days_completed"|"crashes"' $T/soak1.json          # 10 và 0
+diff <(grep -v duration_s $T/soak1.json) <(grep -v duration_s $T/soak2.json) && echo "soak tất định"
+```
+
+QA lưu `bench.json`, `soak.json` từ **commit gắn tag** vào `docs/proof/phase-4/`.
 
 ## 4. Báo kết quả
 

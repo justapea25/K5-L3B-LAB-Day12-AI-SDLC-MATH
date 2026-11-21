@@ -50,6 +50,7 @@ def demo_tuning(tuning):
     q["patience_s"] = 120
     q["interact_radius"] = 2.5
     q["walk_speed"] = 6.0
+    t["shop"]["max_ticks"] = 30 * 60  # Shop mở 30 s để kịp đọc kết quả ngày
     for d in t["menu"].values():
         d["cook_s"] = max(1, d["cook_s"] / 2)
     return t
