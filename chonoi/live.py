@@ -30,6 +30,9 @@ from .runner import make_session
 from .scenario import load_scenario
 
 WEB_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "web")
+ART_TYPES = {"/art/" + name: "image/png" for name in
+             ("cho-noi.png", "khach.png", "ut-sen-lan.png", "ut-sen-dong.png", "bep-mon.png")}
+ART_TYPES.update({"/art/rach-sen.jpg": "image/jpeg", "/art/nha-be.jpg": "image/jpeg"})
 TICK_S = 1.0 / 60.0
 MAX_BODY = 4096
 RECENT_EVENTS = 40
@@ -205,6 +208,12 @@ class _Handler(BaseHTTPRequestHandler):
         path = self.path.split("?", 1)[0]
         if path == "/state":
             self._send(200, self.game.state_json())
+        elif path in ART_TYPES:
+            try:
+                with open(os.path.join(WEB_DIR, path[1:]), "rb") as image:
+                    self._send(200, image.read(), ART_TYPES[path])
+            except OSError:
+                self._send(404, b'{"error":"thieu anh"}')
         elif path in ("/", "/index.html"):
             try:
                 with open(os.path.join(WEB_DIR, "index.html"), "rb") as f:
