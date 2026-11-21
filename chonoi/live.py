@@ -39,9 +39,9 @@ def demo_tuning(tuning):
     """Chế độ demo (chỉ cửa sổ chơi): ngắn hơn, dễ hơn để trình diễn trọn một Ngày. Headless KHÔNG dùng."""
     t = copy.deepcopy(tuning)
     g, q = t["gather"], t["quan"]
-    g["duration_s"] = 90
+    g["duration_s"] = 120  # 2 phút
     g["oxygen_max_s"] = 60
-    q["duration_s"] = 120
+    q["duration_s"] = 120  # 2 phút
     q["customer_interval_s"] = 8
     q["patience_s"] = 120
     q["interact_radius"] = 2.5
