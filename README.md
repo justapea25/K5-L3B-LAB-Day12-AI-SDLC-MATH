@@ -23,7 +23,7 @@ cd K5-L3B-LAB-Day12-AI-SDLC-MATH
 python3 -m chonoi.live --mode day        # mở địa chỉ in ra (mặc định http://127.0.0.1:8000/)
 ```
 
-**Demo dễ chơi:** `python3 -m chonoi.live --mode day --demo` — buổi ngắn hơn (sáng 90 s, tối 120 s), khách đến mỗi 8 s và kiên nhẫn 120 s, nấu nhanh gấp đôi, tầm bấm E rộng hơn, oxy 60 s, và tối nào Má Tư cũng đi chợ mua đủ nguyên liệu theo kế hoạch (chỉ cửa sổ chơi; headless giữ đúng luật). Kế hoạch món của Ngày luôn hiện ở HUD ("📋 Hôm nay Má Tư nấu").
+**Demo dễ chơi:** `python3 -m chonoi.live --mode day --demo` — sáng 2 phút, tối 2 phút, khách đến mỗi 8 s và kiên nhẫn 120 s, nấu nhanh gấp đôi, tầm bấm E rộng hơn, oxy 60 s, và tối nào Má Tư cũng đi chợ mua đủ nguyên liệu theo kế hoạch (chỉ cửa sổ chơi; headless giữ đúng luật). Kế hoạch món của Ngày luôn hiện ở HUD ("📋 Hôm nay Má Tư nấu").
 
 Chơi vòng ngày (5 Ngày): Má Tư đọc món cần nấu → lặn hái → mở quán → Shop mua Bình oxy / Áo phao / Vợt. Chơi riêng một buổi: `--mode gather` hoặc `--mode quan`. Cổng khác: `--port 8765`.
 
