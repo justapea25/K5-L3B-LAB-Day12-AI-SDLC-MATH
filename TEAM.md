@@ -7,7 +7,7 @@
 | Đậu Hoàng Minh | justapea25 | `sim/gather` lát 1 (oxy, ngạt, Máu, giỏ) | Lead / Integrator | lát 2 |
 | Lê Thế Anh (2A202603983) | LETHESHIYING | `sim/gather_harvest` lát 2 (hái, bắt cá) | Developer (Gather) | lát 1 |
 | | | `sim/quan_customers` lát 3 (khách) | Developer | |
-| Đặng Minh Thu (2A202604009) | minhthu27 | `sim/quan_service` lát 4 (bếp, phục vụ, tiền) | Developer, Scrum/Release | viethoang126 |
+| Đặng Minh Thu (2A202604009) | minhthu27 | `sim/quan_service` lát 4 (bếp, phục vụ, tiền) | Developer, Scrum/Release | viethoang127 |
 | Trần Xuân Lộc | Kaylez-TXL | `qa` (test hộp đen, verification) | QA lead | linkiewinkie |
 | Nguyễn Xuân Khánh Linh | linkiewinkie | `docs` + harness AI, sau là `client/ui` | PO | |
 
