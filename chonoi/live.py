@@ -32,7 +32,8 @@ from .scenario import load_scenario
 WEB_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "web")
 ART_TYPES = {"/art/" + name: "image/png" for name in
              ("cho-noi.png", "khach.png", "ut-sen-lan.png", "ut-sen-dong.png", "bep-mon.png")}
-ART_TYPES.update({"/art/rach-sen.jpg": "image/jpeg", "/art/nha-be.jpg": "image/jpeg"})
+ART_TYPES.update({"/art/rach-sen.jpg": "image/jpeg", "/art/nha-be.jpg": "image/jpeg",
+                  "/art/ca-sau.svg": "image/svg+xml"})
 TICK_S = 1.0 / 60.0
 MAX_BODY = 4096
 RECENT_EVENTS = 40
@@ -188,6 +189,27 @@ class LiveGame:
         with self._lock:
             self._reset()
 
+    def skip(self):
+        """Phím K (chỉ cửa sổ chơi): sang pha kế bằng đúng luật — sáng: về bến rồi bấm E;
+        tối: rút đồng hồ ca còn 1 tick để đóng ca theo luật; Shop: bấm shop_done."""
+        with self._lock:
+            sess = self.session
+            if sess.done:
+                return
+            sim = sess.sim
+            if sim.phase == "gather":
+                sim.pos = [float(c) for c in sim.t["dock_pos"]]
+                sim.vel = [0.0, 0.0]
+                self.inputs.set(interact=False)
+                self.inputs.set(interact=True)   # cạnh lên ở tick kế
+                self.inputs.set(interact=False)
+            elif sim.phase == "quan":
+                sim.time_left_ticks = min(sim.time_left_ticks, 1)
+            else:
+                self.inputs.set(shop_done=False)
+                self.inputs.set(shop_done=True)
+                self.inputs.set(shop_done=False)
+
 
 class _Handler(BaseHTTPRequestHandler):
     protocol_version = "HTTP/1.1"
@@ -241,6 +263,8 @@ class _Handler(BaseHTTPRequestHandler):
                 self.game.set_input(body)
             elif path == "/restart":
                 self.game.restart()
+            elif path == "/skip":
+                self.game.skip()
             else:
                 self._send(404, b'{"error":"khong co"}')
                 return
